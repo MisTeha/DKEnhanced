@@ -6,12 +6,11 @@ public final class DKEnhanced extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
+        getLogger().info("DKEnhanced on aktiveeritud!");
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        getLogger().info("DKEnhanced on deaktiveeritud!");
     }
 }
