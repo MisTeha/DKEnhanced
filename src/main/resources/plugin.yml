@@ -1,0 +1,6 @@
+name: DKEnhanced
+version: ${project.version}
+main: io.github.ukp123.dkenhanced.DKEnhanced
+api-version: 1.13
+authors: [ukp123]
+description: A plugin for DKServer
