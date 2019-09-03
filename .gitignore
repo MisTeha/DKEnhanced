@@ -1,4 +1,6 @@
 .gitignore
 .idea
 *.iml
+*.lst
+*.class
 out/
