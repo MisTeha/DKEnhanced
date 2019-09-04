@@ -1,45 +1,39 @@
-package io.github.ukp123.dkenhanced;
+package io.github.ukp123.dkenhanced.commands;
 
-import io.github.ukp123.dkenhanced.commands.HelpCommand;
+import io.github.ukp123.dkenhanced.DKEnhanced;
+import io.github.ukp123.dkenhanced.commands.help.HelpCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Objects;
-
 
 public class MainCommand implements CommandExecutor {
 
-    DKEnhanced plugin;
+    private DKEnhanced plugin;
 
-    MainCommand(DKEnhanced p) {
+    public MainCommand(DKEnhanced p) {
         plugin = p;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
-        if (plugin.getConfig().getString("permissions.help") == null) {
-            player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Plugin pole konfigureeritud. Palun kontakteeru administraatoriga");
-            return true;
-        }
-        if (!player.hasPermission(Objects.requireNonNull(plugin.getConfig().getString("permissions.help")))) {
-            player.sendMessage(plugin.noPermissionMessage);
+        if (plugin.getConfig().getString("permissions.prott") == null) {
+            player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Plugin pole konfigureeritud. Palun kontakteeru administraatoriga.");
             return true;
         }
         if (args.length == 0) {
-            if (HelpCommand.commandList(player, plugin)) {
-                return true;
-            }
+            if (HelpCommand.commandHelp(player, plugin, args)) return true;
         }
         String lowerArg0 = args[0].toLowerCase();
         switch (lowerArg0) {
             case "help":
-                if (HelpCommand.commandHelp(player, plugin, args)) {
+                if (HelpCommand.commandHelp(player, plugin, args))
                     return true;
-                }
+            case "prott":
+
             default:
                 player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Tundmatu argument" + ChatColor.RESET + " - " + ChatColor.GRAY + args[0]);
                 return true;

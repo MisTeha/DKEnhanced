@@ -1,2 +1,5 @@
+prefix:
+
 permissions:
   help: "dkenhanced.help"
+  prott: "dkenhanced.prott"

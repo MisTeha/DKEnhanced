@@ -1,5 +1,6 @@
-package io.github.ukp123.dkenhanced;
+package io.github.ukp123.dkenhanced.commands;
 
+import io.github.ukp123.dkenhanced.DKEnhanced;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +12,7 @@ import org.bukkit.entity.Player;
 
 public class TestCommand implements CommandExecutor {
 
-    public DKEnhanced plugin;
+    private DKEnhanced plugin;
 
     public TestCommand(DKEnhanced p) {
         plugin = p;
