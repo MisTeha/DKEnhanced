@@ -12,10 +12,11 @@ class HelpCommandPages {
             String lowerArg1 = args[1].toLowerCase();
             switch (lowerArg1) {
                 case "help":
-                    player.sendMessage(plugin.chatPrefix + ChatColor.DARK_AQUA + "/dk help [käsk] " + ChatColor.GRAY + "Näitab kõiki käske ja nende tähendusi | käsu täpsemat tähendust.");
+                    player.sendMessage(plugin.chatPrefix + ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "help [käsk] " + ChatColor.GRAY + "Näitab kõiki käske ja nende tähendusi | käsu täpsemat tähendust.");
                     return true;
                 case "prott":
-                    player.sendMessage(plugin.chatPrefix + ChatColor.DARK_AQUA + "/dk prott " + ChatColor.GRAY + "Arendaja peab siia veel midagi lisama.");
+                    player.sendMessage(plugin.chatPrefix + ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "prott " + ChatColor.GRAY + "Lisab protti alale, mille oled valinud. \n" +
+                    ChatColor.RED + "See käsk pole täiustatud selles plugina versioonis.");
                     //TODO: Korralik seletus kui command on actually valmis tehtud.
                     return true;
                 default:
@@ -28,8 +29,9 @@ class HelpCommandPages {
 
     static boolean commandList(Player player, DKEnhanced plugin) {
         player.sendMessage(asthLine);
-        player.sendMessage(ChatColor.DARK_AQUA + "/dk " + ChatColor.GRAY + "help" + ChatColor.RESET + " - näitab seda lehte.");
-        player.sendMessage(ChatColor.DARK_AQUA + "/dk " + ChatColor.GRAY + "prott" + ChatColor.RESET + " - Lisab kaitstud ala sinu valitud alale.");
+        player.sendMessage(ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "help" + ChatColor.GRAY + " - näitab seda lehte.");
+        player.sendMessage(ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "prott" + ChatColor.GRAY + " - lisab kaitstud ala sinu valitud alale.");
+        player.sendMessage(ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "reload" + ChatColor.GRAY + " - uuendab konfiguratsiooni.");
         player.sendMessage(asthLineblw);
         return true;
     }

@@ -1,5 +1,6 @@
-prefix:
-
+prefix: "&9[&3DK&bEnhanced&9] "
+#this is a comment.
 permissions:
   help: "dkenhanced.help"
   prott: "dkenhanced.prott"
+#this is another comment"

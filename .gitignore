@@ -3,4 +3,5 @@
 *.iml
 *.lst
 *.class
+*.kotlin_module
 out/

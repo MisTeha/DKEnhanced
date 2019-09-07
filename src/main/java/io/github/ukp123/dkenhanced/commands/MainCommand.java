@@ -1,6 +1,7 @@
 package io.github.ukp123.dkenhanced.commands;
 
 import io.github.ukp123.dkenhanced.DKEnhanced;
+import io.github.ukp123.dkenhanced.commands.Prott.ProttCommand;
 import io.github.ukp123.dkenhanced.commands.help.HelpCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -30,17 +31,18 @@ public class MainCommand implements CommandExecutor {
         String lowerArg0 = args[0].toLowerCase();
         switch (lowerArg0) {
             case "help":
-                if (HelpCommand.commandHelp(player, plugin, args))
-                    return true;
+                HelpCommand.commandHelp(player, plugin, args);
+                return true;
             case "prott":
-
+                ProttCommand.commandPrott(player, plugin, args);
+                return true;
             default:
                 player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Tundmatu argument" + ChatColor.RESET + " - " + ChatColor.GRAY + args[0]);
                 return true;
         }
     }
-
 }
+
 
 
 
