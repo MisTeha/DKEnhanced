@@ -15,12 +15,14 @@ class HelpCommandPages {
                     player.sendMessage(plugin.chatPrefix + ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "help [käsk] " + ChatColor.GRAY + "Näitab kõiki käske ja nende tähendusi | käsu täpsemat tähendust.");
                     return true;
                 case "prott":
-                    player.sendMessage(plugin.chatPrefix + ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "prott " + ChatColor.GRAY + "Lisab protti alale, mille oled valinud. \n" +
-                    ChatColor.RED + "See käsk pole täiustatud selles plugina versioonis.");
-                    //TODO: Korralik seletus kui command on actually valmis tehtud.
+                    player.sendMessage(plugin.chatPrefix + ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "prott [mängija nimi] <-f> " + ChatColor.GRAY + "Lisab protti alale, mille oled valinud.\n" +
+                            "Flagid:\n" +
+                            "   -ignorelimit - Ignoreerib alade limiiti mängija kohta\n" +
+                            "Info:\n" +
+                            "   Mängija alade limiit: " + plugin.getConfig().getInt("commands.prott.max-prot-per-player"));
                     return true;
                 default:
-                    player.sendMessage(plugin.chatPrefix + plugin.chatUA + args[1]);
+                    player.sendMessage(plugin.chatUA + args[1]);
                     return true;
             }
         }
@@ -31,7 +33,6 @@ class HelpCommandPages {
         player.sendMessage(asthLine);
         player.sendMessage(ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "help" + ChatColor.GRAY + " - näitab seda lehte.");
         player.sendMessage(ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "prott" + ChatColor.GRAY + " - lisab kaitstud ala sinu valitud alale.");
-        player.sendMessage(ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "reload" + ChatColor.GRAY + " - uuendab konfiguratsiooni.");
         player.sendMessage(asthLineblw);
         return true;
     }

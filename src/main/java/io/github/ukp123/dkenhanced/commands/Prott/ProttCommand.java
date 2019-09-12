@@ -1,5 +1,6 @@
 package io.github.ukp123.dkenhanced.commands.Prott;
 
+import com.sk89q.minecraft.util.commands.CommandContext;
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -11,11 +12,11 @@ public class ProttCommand {
 
 
     public static void commandPrott(Player player, DKEnhanced plugin, String[] args) {
-        if (plugin.getConfig().getString("permissions.prott") == null) {
+        if (plugin.getConfig().getString("commands.prott.permission") == null) {
             player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Plugin ei ole konfigureeritud. Palun kontakteeru administraatoriga.");
             return;
         }
-        if (!player.hasPermission(Objects.requireNonNull(plugin.getConfig().getString("permissions.prott")))) {
+        if (!player.hasPermission(Objects.requireNonNull(plugin.getConfig().getString("commands.prott.permission")))) {
             player.sendMessage(plugin.noPermissionMessage);
             return;
         }
@@ -25,13 +26,22 @@ public class ProttCommand {
         if (CreateWorldEditSelection.getSelection(player, plugin, false) == null) {
             return;
         }
-        switch (args.length) {
-            case 1:
-                player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Palun sisesta mängija, kellele ala teed.");
-                return;
-            case 2:
-                String pgPlayer = args[1];
-                CreateRegion.createRegion(player, pgPlayer, plugin, false);
+        if (args.length == 1) {
+            player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Palun sisesta mängija, kellele ala teed.");
+            return;
+        }
+        if (args.length >= 2) {
+            boolean ignoreLimit = false;
+            String pgPlayer = args[1];
+            String ignorelimits = "-ignorelimit";
+            for (String arg :
+                    args) {
+                if (arg.contentEquals(ignorelimits)) {
+                    player.sendMessage(plugin.chatPrefix + ChatColor.YELLOW + "Ignoreerin prottide limiiti.");
+                    ignoreLimit = true;
+                }
+            }
+            CreateRegion.createRegion(player, pgPlayer, plugin, ignoreLimit);
         }
     }
 

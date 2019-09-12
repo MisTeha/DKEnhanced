@@ -9,11 +9,11 @@ import java.util.Objects;
 public class HelpCommand {
 
     public static boolean commandHelp(Player player, DKEnhanced plugin, String[] args) {
-        if (plugin.getConfig().getString("permissions.help") == null) {
+        if (plugin.getConfig().getString("commands.help.permission") == null) {
             player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Plugin pole konfigureeritud. Palun kontakteeru administraatoriga");
             return true;
         }
-        if (!player.hasPermission(Objects.requireNonNull(plugin.getConfig().getString("permissions.help")))) {
+        if (!player.hasPermission(Objects.requireNonNull(plugin.getConfig().getString("commands.help.permission")))) {
             player.sendMessage(plugin.noPermissionMessage);
             return true;
         }

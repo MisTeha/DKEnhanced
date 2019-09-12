@@ -14,12 +14,12 @@ public final class DKEnhanced extends JavaPlugin {
 
     public String chatPrefix = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(getConfig().getString("prefix")));
 
-    public String chatUA = chatPrefix + ChatColor.RED + "Tundmatu argument " + ChatColor.GRAY;
+    public String chatUA = chatPrefix + ChatColor.RED + "Tundmatu argument " + ChatColor.WHITE + "- " + ChatColor.GRAY;
 
 
     public String noPermissionMessage = chatPrefix + ChatColor.RED + "Sul pole õigust sellele käsule.";
 
-    public void updateConfig(DKEnhanced plugin) {
+    private void updateConfig(DKEnhanced plugin) {
         getConfig().options().copyDefaults(true);
         saveConfig();
     }

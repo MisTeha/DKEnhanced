@@ -3,7 +3,6 @@ package io.github.ukp123.dkenhanced.commands.Prott;
 import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.command.ExpandCommands;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.regions.RegionOperationException;
@@ -12,7 +11,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 
-public class CreateWorldEditSelection {
+class CreateWorldEditSelection {
 
     private static WorldEditPlugin wep;
 

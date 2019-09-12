@@ -21,7 +21,7 @@ public class MainCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
-        if (plugin.getConfig().getString("permissions.prott") == null) {
+        if (plugin.getConfig().getString("commands.prott.permission") == null) {
             player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Plugin pole konfigureeritud. Palun kontakteeru administraatoriga.");
             return true;
         }
