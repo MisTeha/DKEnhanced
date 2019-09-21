@@ -30,7 +30,7 @@ class CreateRegion {
         Player pgPlayer;
         pgPlayer = plugin.getServer().getPlayer(tempPGPlayer);
         if (pgPlayer == null) {
-            sender.sendMessage(plugin.chatPrefix + ChatColor.RED + "Mänigja " + tempPGPlayer + " ei ole serveriga ühendatud.");
+            sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.player_disconnected"));
             return;
         }
         ProtectedRegion region;
@@ -47,21 +47,20 @@ class CreateRegion {
         try {
             region = new ProtectedCuboidRegion(protectionName, min, max);
         } catch (IllegalArgumentException e) {
-            sender.sendMessage(plugin.chatPrefix + ChatColor.RED + "Oled kasutanud ala nimes keelatud tähti. Ala ei loodud.");
+            sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.used.illegal.characters"));
             return;
         }
         if (!bypassPlimit) {
             assert regions != null;
-            if (getRegionCount(pgPlayer, plugin, regions) >= plugin.getConfig().getInt("commands.prott.max-prot-per-player")) {
-                sender.sendMessage(plugin.chatPrefix + ChatColor.RED + "Mängijal " + pgPlayer.getName() + " on juba " + plugin.getConfig()
-                        .getInt("commands.prott.max-prot-per-player") + " ala.\n" + ChatColor.YELLOW + "Kui soovid teha protte üle limiidi, lisa käsu lõppu -ignorelimit");
+            if (getRegionCount(pgPlayer, plugin, regions) >= plugin.getConfig().getInt("commands.prott.prot_limit")) {
+                sender.sendMessage(plugin.replaceMessageVariables("ProttConfig.player_over_prot_limit"));
                 return;
             }
         }
         assert regions != null;
         regions.addRegion(region);
         applyFlagsAndOwner(region, pgPlayer, selection);
-        sender.sendMessage(plugin.chatPrefix + ChatColor.GREEN + "Ala on loodud.");
+        sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.prot_made"));
     }
 
     private static String getProtectionName(Player player, DKEnhanced plugin, RegionManager regions) {
@@ -87,6 +86,7 @@ class CreateRegion {
         region.setFlag(Flags.FAREWELL_MESSAGE, "Lahkusite " + pgPlayerName + " alalt!");
         region.setFlag(Flags.RIDE, StateFlag.State.ALLOW);
         region.setFlag(Flags.TELE_LOC, getCenterLocation(selection));
+        //TODO:: make flags configurable.
     }
 
     private static com.sk89q.worldedit.util.Location getCenterLocation(Region selection) {

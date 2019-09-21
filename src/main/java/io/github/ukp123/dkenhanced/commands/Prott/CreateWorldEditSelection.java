@@ -29,7 +29,7 @@ class CreateWorldEditSelection {
             }
             return selection;
         } catch (IncompleteRegionException | RegionOperationException e) {
-            player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Ala valimata.");
+            player.sendMessage(plugin.replaceMessageVariables("ProttCommand.selection_undefined"));
             return null;
         }
     }

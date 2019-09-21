@@ -26,7 +26,8 @@ public class MainCommand implements CommandExecutor {
             return true;
         }
         if (args.length == 0) {
-            if (HelpCommand.commandHelp(player, plugin, args)) return true;
+            HelpCommand.commandHelp(player, plugin, args);
+            return true;
         }
         String lowerArg0 = args[0].toLowerCase();
         switch (lowerArg0) {

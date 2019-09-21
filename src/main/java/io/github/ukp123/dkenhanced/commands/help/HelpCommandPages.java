@@ -2,53 +2,46 @@ package io.github.ukp123.dkenhanced.commands.help;
 
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 class HelpCommandPages {
 
-
-    static boolean sCommandHelp(Player player, DKEnhanced plugin, String[] args) {
+    static void sCommandHelp(Player player, DKEnhanced plugin, String[] args) {
         if (args.length == 2) {
             String lowerArg1 = args[1].toLowerCase();
             switch (lowerArg1) {
                 case "help":
-                    player.sendMessage(plugin.chatPrefix + ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "help [käsk] " + ChatColor.GRAY + "Näitab kõiki käske ja nende tähendusi | käsu täpsemat tähendust.");
-                    return true;
+                    player.sendMessage(plugin.replaceMessageVariables("SpecificHelpPage.help"));
+                    return;
                 case "prott":
-                    player.sendMessage(plugin.chatPrefix + ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "prott [mängija nimi] <-f> " + ChatColor.GRAY + "Lisab protti alale, mille oled valinud.\n" +
-                            "Flagid:\n" +
-                            "   -ignorelimit - Ignoreerib alade limiiti mängija kohta\n" +
-                            "Info:\n" +
-                            "   Mängija alade limiit: " + plugin.getConfig().getInt("commands.prott.max-prot-per-player"));
-                    return true;
+                    player.sendMessage(plugin.replaceMessageVariables("SpecificHelpPage.prott"));
+                    return;
                 default:
-                    player.sendMessage(plugin.chatUA + args[1]);
-                    return true;
+                    String finalmessage = plugin.replaceMessageVariables("Error_Messages.unknown_arg");
+                    finalmessage.replace("{ARGUMENT}", args[1]);
+                    player.sendMessage(finalmessage);
+                    return;
             }
         }
-        return true;
+        return;
     }
-
     static boolean commandList(Player player, DKEnhanced plugin) {
-        player.sendMessage(asthLine);
-        player.sendMessage(ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "help" + ChatColor.GRAY + " - näitab seda lehte.");
-        player.sendMessage(ChatColor.AQUA + "/dk " + ChatColor.DARK_AQUA + "prott" + ChatColor.GRAY + " - lisab kaitstud ala sinu valitud alale.");
-        player.sendMessage(asthLineblw);
+        player.sendMessage(
+        plugin.replaceMessageVariables("HelpPage.upper_line") + "\n" +
+        plugin.replaceMessageVariables("HelpPage.help") + "\n" +
+        plugin.replaceMessageVariables("HelpPage.prott") +
+        plugin.replaceMessageVariables("HelpPage.bottom_line"));
         return true;
     }
-
     static boolean credits(Player player, DKEnhanced plugin) {
         player.sendMessage(
-                asthLine + "\n" +
-                ChatColor.DARK_AQUA + "Arendaja" + ChatColor.AQUA + " ● " + ChatColor.GRAY + "ukp123" + "\n" +
-                ChatColor.DARK_AQUA + "Versioon" + ChatColor.AQUA + " ● " + ChatColor.GRAY + plugin.getDescription().getVersion() + "\n" +
-                ChatColor.DARK_AQUA + "Abikäsk" + ChatColor.AQUA + " ● " + ChatColor.GRAY + "/dk help" + "\n" +
-                ChatColor.DARK_AQUA + "Prefix" + ChatColor.AQUA + " ● " + ChatColor.RESET + plugin.chatPrefix + "\n" +
-                asthLineblw);
+                plugin.replaceMessageVariables("HelpPage.upper_line") + "\n" +
+                plugin.replaceMessageVariables("Credits.developer") + "\n" +
+                plugin.replaceMessageVariables("Credits.version") + "\n" +
+                plugin.replaceMessageVariables("Credits.help_command") + "\n" +
+                plugin.replaceMessageVariables("Credits.prefix") + "\n" +
+                plugin.replaceMessageVariables("HelpPage.bottom_line"));
         return true;
     }
-
-    private static String asthLine = ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "" + ChatColor.STRIKETHROUGH + "===== " + ChatColor.RESET + "" + ChatColor.DARK_AQUA + "DK" +
-            ChatColor.AQUA + "Enhanced" + ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "" + ChatColor.STRIKETHROUGH + " =====";
-    private static String asthLineblw = ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "" + ChatColor.STRIKETHROUGH + "====================";
 }

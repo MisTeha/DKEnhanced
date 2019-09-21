@@ -1,9 +1,6 @@
-prefix: "&9[&3DK&bEnhanced&9] "
-#this is a comment.
 commands:
   help:
     permission: "dkenhanced.help"
   prott:
     permission: "dkenhanced.prott"
-    max-prot-per-player: 5
-#this is another comment"
+    prot_limit: 5

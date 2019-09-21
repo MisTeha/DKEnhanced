@@ -1,6 +1,5 @@
 package io.github.ukp123.dkenhanced.commands.Prott;
 
-import com.sk89q.minecraft.util.commands.CommandContext;
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -13,11 +12,11 @@ public class ProttCommand {
 
     public static void commandPrott(Player player, DKEnhanced plugin, String[] args) {
         if (plugin.getConfig().getString("commands.prott.permission") == null) {
-            player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Plugin ei ole konfigureeritud. Palun kontakteeru administraatoriga.");
+            player.sendMessage(plugin.replaceMessageVariables("Error_Messages.unknown_arg"));
             return;
         }
         if (!player.hasPermission(Objects.requireNonNull(plugin.getConfig().getString("commands.prott.permission")))) {
-            player.sendMessage(plugin.noPermissionMessage);
+            player.sendMessage(plugin.replaceMessageVariables("Error_Messages.no_permission_messages"));
             return;
         }
         if (!checkWEAndWG(player, plugin)) {
@@ -27,7 +26,7 @@ public class ProttCommand {
             return;
         }
         if (args.length == 1) {
-            player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Palun sisesta mängija, kellele ala teed.");
+            player.sendMessage(plugin.replaceMessageVariables("ProttCommand.player_undefined"));
             return;
         }
         if (args.length >= 2) {
@@ -37,7 +36,7 @@ public class ProttCommand {
             for (String arg :
                     args) {
                 if (arg.contentEquals(ignorelimits)) {
-                    player.sendMessage(plugin.chatPrefix + ChatColor.YELLOW + "Ignoreerin prottide limiiti.");
+                    player.sendMessage(plugin.replaceMessageVariables("ProttCommand.ignoring_prot_limit"));
                     ignoreLimit = true;
                 }
             }
@@ -49,13 +48,13 @@ public class ProttCommand {
         Plugin tempWE = plugin.getServer().getPluginManager().getPlugin("WorldEdit");
         Plugin tempWG = plugin.getServer().getPluginManager().getPlugin("WorldGuard");
         if (tempWE == null && tempWG == null) {
-            player.sendMessage(plugin.chatPrefix + ChatColor.RED + "WorldEdit ega WordGuard ei ole installitud. " + ChatColor.GRAY + "/dk prott " + ChatColor.RED + "ei toimi nendeta.");
+            player.sendMessage(plugin.replaceMessageVariables("ProttCommand.we_wg_undefined"));
             return false;
         } else if (tempWE == null) {
-            player.sendMessage(plugin.chatPrefix + "WorldEdit ei ole installitud. " + ChatColor.GRAY + "/dk prott " + ChatColor.RED + "ei tööta selleta.");
+            player.sendMessage(plugin.replaceMessageVariables("ProttCommand.we_undefined"));
             return false;
         } else if (tempWG == null) {
-            player.sendMessage(plugin.chatPrefix + ChatColor.RED + "WorldGuard ei ole installitud. " + ChatColor.GRAY + "/dk prott " + ChatColor.RED + "ei tööta selleta.");
+            player.sendMessage(plugin.replaceMessageVariables("ProttCommand.wg_undefined"));
             return false;
         }
         return true;
