@@ -15,7 +15,6 @@ import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import io.github.ukp123.dkenhanced.DKEnhanced;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -30,7 +29,7 @@ class CreateRegion {
         Player pgPlayer;
         pgPlayer = plugin.getServer().getPlayer(tempPGPlayer);
         if (pgPlayer == null) {
-            sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.player_disconnected"));
+            sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.player_disconnected", tempPGPlayer));
             return;
         }
         ProtectedRegion region;
@@ -86,7 +85,6 @@ class CreateRegion {
         region.setFlag(Flags.FAREWELL_MESSAGE, "Lahkusite " + pgPlayerName + " alalt!");
         region.setFlag(Flags.RIDE, StateFlag.State.ALLOW);
         region.setFlag(Flags.TELE_LOC, getCenterLocation(selection));
-        //TODO:: make flags configurable.
     }
 
     private static com.sk89q.worldedit.util.Location getCenterLocation(Region selection) {

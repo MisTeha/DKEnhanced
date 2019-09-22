@@ -3,7 +3,6 @@ package io.github.ukp123.dkenhanced.commands;
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import io.github.ukp123.dkenhanced.commands.Prott.ProttCommand;
 import io.github.ukp123.dkenhanced.commands.help.HelpCommand;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,8 +21,7 @@ public class MainCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
         if (plugin.getConfig().getString("commands.prott.permission") == null) {
-            player.sendMessage("see ei tööta");
-            //TODO: TEE KORDA
+            player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.no_permission_message"));
             return true;
         }
         if (args.length == 0) {
@@ -39,8 +37,7 @@ public class MainCommand implements CommandExecutor {
                 ProttCommand.commandPrott(player, plugin, args);
                 return true;
             default:
-                player.sendMessage("seeeiitöötööötaaaaa");
-                //TODO: tee korda
+                player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.unknown_arg", args[0]));
                 return true;
         }
     }

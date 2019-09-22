@@ -18,13 +18,11 @@ class HelpCommandPages {
                     player.sendMessage(plugin.replaceMessageVariables("SpecificHelpPage.prott"));
                     return;
                 default:
-                    String finalmessage = plugin.replaceMessageVariables("Error_Messages.unknown_arg");
-                    finalmessage.replace("{ARGUMENT}", args[1]);
+                    String finalmessage = plugin.replaceMessageVariables("ErrorMessages.unknown_arg", args[1]);
                     player.sendMessage(finalmessage);
                     return;
             }
         }
-        return;
     }
     static boolean commandList(Player player, DKEnhanced plugin) {
         player.sendMessage(
@@ -41,7 +39,8 @@ class HelpCommandPages {
                 plugin.replaceMessageVariables("Credits.version") + "\n" +
                 plugin.replaceMessageVariables("Credits.help_command") + "\n" +
                 plugin.replaceMessageVariables("Credits.prefix") + "\n" +
-                plugin.replaceMessageVariables("HelpPage.bottom_line"));
+                plugin.replaceMessageVariables("HelpPage.lower_line"));
+
         return true;
     }
 }

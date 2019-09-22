@@ -16,7 +16,7 @@ public class ProttCommand {
             return;
         }
         if (!player.hasPermission(Objects.requireNonNull(plugin.getConfig().getString("commands.prott.permission")))) {
-            player.sendMessage(plugin.replaceMessageVariables("Error_Messages.no_permission_messages"));
+            player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.no_permission_message"));
             return;
         }
         if (!checkWEAndWG(player, plugin)) {

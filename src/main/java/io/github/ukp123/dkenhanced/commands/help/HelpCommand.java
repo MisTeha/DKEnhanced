@@ -13,11 +13,11 @@ public class HelpCommand {
     public static void commandHelp(Player player, DKEnhanced plugin, String[] args) {
         FileConfiguration messages = plugin.getMessagesConfig();
         if (plugin.getConfig().getString("commands.help.permission") == null) {
-            player.sendMessage(messages.getString("Error_Messages.plugin_unconfigured"));
+            player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.plugin_unconfigured"));
             return;
         }
         if (!player.hasPermission(Objects.requireNonNull(plugin.getConfig().getString("commands.help.permission")))) {
-            player.sendMessage(messages.getString("Error_Messages.no_permission_message"));
+            player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.no_permission_message"));
             return;
         }
         if (args.length == 0) {
