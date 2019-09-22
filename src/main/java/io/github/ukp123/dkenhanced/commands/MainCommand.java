@@ -22,7 +22,8 @@ public class MainCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         Player player = (Player) sender;
         if (plugin.getConfig().getString("commands.prott.permission") == null) {
-            player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Plugin pole konfigureeritud. Palun kontakteeru administraatoriga.");
+            player.sendMessage("see ei tööta");
+            //TODO: TEE KORDA
             return true;
         }
         if (args.length == 0) {
@@ -38,7 +39,8 @@ public class MainCommand implements CommandExecutor {
                 ProttCommand.commandPrott(player, plugin, args);
                 return true;
             default:
-                player.sendMessage(plugin.chatPrefix + ChatColor.RED + "Tundmatu argument" + ChatColor.RESET + " - " + ChatColor.GRAY + args[0]);
+                player.sendMessage("seeeiitöötööötaaaaa");
+                //TODO: tee korda
                 return true;
         }
     }

@@ -17,26 +17,25 @@ public final class DKEnhanced extends JavaPlugin {
 
     private String namepVersion = getDescription().getName() + " v" + getDescription().getVersion() + " ";
 
-    public String chatPrefix = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(getConfig().getString("prefix")));
-
-    public String chatUA = chatPrefix + ChatColor.RED + "Tundmatu argument " + ChatColor.WHITE + "- " + ChatColor.GRAY;
-
-    public String noPermissionMessage = chatPrefix + ChatColor.RED + "Sul pole õigust sellele käsule.";
-
     private File customConfigFile;
     private FileConfiguration customConfig;
 
-    private void updateConfig(DKEnhanced plugin) {
+    private void updateConfig(DKEnhanced plugin) throws IOException {
         getConfig().options().copyDefaults(true);
         saveConfig();
+        customConfig.options().copyDefaults(true);
+
     }
 
     public String replaceMessageVariables(String tempm) {
-        String m = getMessagesConfig().getString(tempm);
-        if (m.contains("{PREFIX}")) {
-            m.replace("{PREFIX}", getMessagesConfig().getString("prefix"));
+        String m = getMessagesConfig().getString("prefix");
+        if (m == null) {
+            return "null";
         }
-        if (m.contains("{DEVELOPERS}")) {
+        if (m.contains("{PREFIX}")) {
+            m.replace("{PREFIX}", customConfig.getString("prefix"));
+        }
+        if (m.contains("{DEVELOPER}")) {
             m.replace("{DEVELOPER}", "ukp123");
         }
         if (m.contains("{VERSION}")) {
@@ -55,8 +54,13 @@ public final class DKEnhanced extends JavaPlugin {
     public void onEnable() {
         getLogger().info(namepVersion + "on aktiveeritud.");
         Objects.requireNonNull(this.getCommand("dk")).setExecutor(new MainCommand(this));
-        updateConfig(this);
         CreateMessagesConfig();
+        try {
+            updateConfig(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+            getLogger().warning("mida sa ajad kuidas me siia jõudsime");
+        }
         if (getServer().getPluginManager().getPlugin("WorldEdit") == null) {
             getLogger().warning("WorldEdit ei ole installitud. Osad " + name + "funktsioonid ei pruugi toimida.");
         }
@@ -80,12 +84,12 @@ public final class DKEnhanced extends JavaPlugin {
             customConfigFile.getParentFile().mkdirs();
             saveResource("messages.yml", false);
         }
-
-        customConfig= new YamlConfiguration();
+        customConfig = new YamlConfiguration();
         try {
             customConfig.load(customConfigFile);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
+            getLogger().warning("jõudsid siia");
         }
     }
 }
