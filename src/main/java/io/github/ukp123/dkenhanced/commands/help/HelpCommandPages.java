@@ -29,7 +29,7 @@ class HelpCommandPages {
         plugin.replaceMessageVariables("HelpPage.upper_line") + "\n" +
         plugin.replaceMessageVariables("HelpPage.help") + "\n" +
         plugin.replaceMessageVariables("HelpPage.prott") +
-        plugin.replaceMessageVariables("HelpPage.bottom_line"));
+        plugin.replaceMessageVariables("HelpPage.lower_line"));
         return true;
     }
     static boolean credits(Player player, DKEnhanced plugin) {

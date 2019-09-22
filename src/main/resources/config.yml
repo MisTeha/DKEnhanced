@@ -4,3 +4,6 @@ commands:
   prott:
     permission: "dkenhanced.prott"
     prot_limit: 5
+    greeting: "Sisenesite {PLAYER} alale."
+    farewell: "Lahkusite {PLAYER} alalt."
+    ride: true

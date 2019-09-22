@@ -46,19 +46,19 @@ class CreateRegion {
         try {
             region = new ProtectedCuboidRegion(protectionName, min, max);
         } catch (IllegalArgumentException e) {
-            sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.used.illegal.characters"));
+            sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.used_illegal_characters"));
             return;
         }
         if (!bypassPlimit) {
             assert regions != null;
             if (getRegionCount(pgPlayer, plugin, regions) >= plugin.getConfig().getInt("commands.prott.prot_limit")) {
-                sender.sendMessage(plugin.replaceMessageVariables("ProttConfig.player_over_prot_limit"));
+                sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.player_over_prot_limit", pgPlayer.getName()));
                 return;
             }
         }
         assert regions != null;
         regions.addRegion(region);
-        applyFlagsAndOwner(region, pgPlayer, selection);
+        applyFlagsAndOwner(region, pgPlayer, selection, plugin);
         sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.prot_made"));
     }
 
@@ -76,14 +76,19 @@ class CreateRegion {
         return regions.getRegionCountOfPlayer(pgPlayer);
     }
 
-    private static void applyFlagsAndOwner(ProtectedRegion region, Player tempPGPlayer, Region selection) {
+    private static void applyFlagsAndOwner(ProtectedRegion region, Player tempPGPlayer, Region selection, DKEnhanced plugin) {
         UUID pgPlayerUUID = tempPGPlayer.getUniqueId();
         String pgPlayerName = tempPGPlayer.getName();
         DefaultDomain owners = region.getOwners();
+        String greeting = plugin.getConfig().getString("commands.prott.greeting").replace("{PLAYER}", pgPlayerName);
+        String farewell = plugin.getConfig().getString("commands.prott.farewell").replace("{PLAYER}", pgPlayerName);
+        StateFlag.State ride;
+        if (plugin.getConfig().getBoolean("commands.prott.ride")) ride = StateFlag.State.ALLOW;
+        else ride = StateFlag.State.DENY;
         owners.addPlayer(pgPlayerUUID);
-        region.setFlag(Flags.GREET_MESSAGE, "Tere tulemast " + pgPlayerName + " alele!");
-        region.setFlag(Flags.FAREWELL_MESSAGE, "Lahkusite " + pgPlayerName + " alalt!");
-        region.setFlag(Flags.RIDE, StateFlag.State.ALLOW);
+        region.setFlag(Flags.GREET_MESSAGE, greeting);
+        region.setFlag(Flags.FAREWELL_MESSAGE, farewell);
+        region.setFlag(Flags.RIDE, ride);
         region.setFlag(Flags.TELE_LOC, getCenterLocation(selection));
     }
 
