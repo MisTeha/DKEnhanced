@@ -91,12 +91,6 @@ class CreateRegion {
         region.setFlag(Flags.RIDE, ride);
         region.setFlag(Flags.TELE_LOC, getCenterLocation(selection));
     }
-    
-    private static void addMember(ProtectedRegion region, Player member) {
-        UUID memberUUID = member.getUniqueId();
-        DefaultDomain members = region.getMembers;
-        members.addPlayer(memberUUID)
-    }
 
     private static com.sk89q.worldedit.util.Location getCenterLocation(Region selection) {
         Vector3 pos1 = selection.getMinimumPoint().toVector3();
@@ -108,6 +102,5 @@ class CreateRegion {
         Location center = new Location(world, bv3Center.getBlockX(), world.getHighestBlockYAt(BukkitAdapter.adapt(world, bv3Center)), bv3Center.getBlockZ());
         return (BukkitAdapter.adapt(center));
     }
-
 }
 
