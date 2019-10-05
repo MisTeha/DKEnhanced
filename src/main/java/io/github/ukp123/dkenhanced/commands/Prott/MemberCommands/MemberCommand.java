@@ -41,7 +41,7 @@ public class MemberCommand {
         getCurrentRegion(player);
     }
 
-    static ProtectedRegion getCurrentRegion(Player player) {
+    private static ProtectedRegion getCurrentRegion(Player player) {
         Location loc = BukkitAdapter.adapt(player.getLocation());
         RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
         RegionQuery query = container.createQuery();
@@ -55,7 +55,6 @@ public class MemberCommand {
             }
         }
         return hpRegion;
-        //TODO: ma tegelt ei saa aru kuidas seda normaalselt teha..
     }
 
 }
