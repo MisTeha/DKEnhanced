@@ -1,6 +1,7 @@
 package io.github.ukp123.dkenhanced.commands;
 
 import io.github.ukp123.dkenhanced.DKEnhanced;
+import io.github.ukp123.dkenhanced.commands.Prott.MemberCommands.MemberCommand;
 import io.github.ukp123.dkenhanced.commands.Prott.ProttCommand;
 import io.github.ukp123.dkenhanced.commands.help.HelpCommand;
 import org.bukkit.command.Command;
@@ -35,6 +36,9 @@ public class MainCommand implements CommandExecutor {
                 return true;
             case "prott":
                 ProttCommand.commandPrott(player, plugin, args);
+                return true;
+            case "add":
+                MemberCommand.addMemberCommand(player, args, plugin);
                 return true;
             default:
                 player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.unknown_arg", args[0]));

@@ -9,8 +9,10 @@ Credits:
 HelpPage:
   upper_line: "&8&l&m===== &r&3DK&bEnhanced &8&l&m====="
   lower_line: "&8&l&m===================="
-  help: "&b/dk &3/help &7- näitab seda lehte."
-  prott: "&b/dk &3/prott &7- lisab proti sinu valitud alale."
+  help: "&b/dk &3help &7- näitab seda lehte."
+  prott: "&b/dk &3prott &7- lisab proti sinu valitud alale."
+  add: "&b/dk &3add &7- lisab liikme alale, millel oled."
+  remove: "&b/dk &3remove &7- eemaldab liikme alalt, kus oled."
 
 SpecificHelpPage:
   help: "&b/dk &3help <käsk> &7Näitab kõiki käske ja nende tähendusi | käsu täpsemat tähendust."
@@ -20,7 +22,7 @@ ErrorMessages:
   plugin_unconfigured: "{PREFIX} &cPlugin ei ole konfigureeritud, palun kontakteeru administraatoriga."
   no_permission_message: "{PREFIX} &cSul pole õigust sellele käsule."
   unknown_arg: "{PREFIX} Tundmatu argument: {V}"
-##THIS IS A COMMENT
+
 ProttCommand:
   we_wg_undefined: "{PREFIX} &cWorldEditi ega WorldGuardi ei ole installitud. &7/dk prott &cei toimi nendeta."
   we_undefined: "{PREFIX} &cWorldEditi ei ole installitud. &7/dk prott &cei toimi selleta."
@@ -32,6 +34,10 @@ ProttCommand:
   used_illegal_characters: "{PREFIX} &cOled kasutanud ala nimes keelatud tähti. Ala ei loodud."
   ignoring_prot_limit: "{PREFIX} &eIgnoreerin prottide limiiti."
   prot_made: "{PREFIX} &aAla loodud."
+
+MemberCommands:
+  add:
+    player_undefined: "{PREFIX} &cPalun sisesta mängija, keda tahad alasse lisada"
 
 
 

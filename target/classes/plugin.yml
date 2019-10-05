@@ -7,4 +7,5 @@ description: Makes things go smoother for DKServer.
 commands:
   dk:
     description: DKEnhanced põhikäsk.
-    usage: /dk
+    usage: /dk <arg>
+    permission: dkenhanced.help
