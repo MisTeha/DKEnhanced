@@ -1,0 +1,7 @@
+<server>
+    <id>dev-azure-com-misteha-dkenhanced</id>
+    <username>DKEnhanced</username>
+    <!-- Treat this auth token like a password. Do not share it with anyone, including Microsoft support. -->
+    <!-- The generated token expires on or before 1/27/2020 -->
+    <password>n5wsu4pmeyhhnxsqjh65ryufk7owltfqwhovqnkyvnro5vecrubq</password>
+</server>
