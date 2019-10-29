@@ -44,7 +44,7 @@ public class ProttCommand {
         }
     }
 
-    private static boolean checkWEAndWG(Player player, DKEnhanced plugin) {
+    public static boolean checkWEAndWG(Player player, DKEnhanced plugin) {
         Plugin tempWE = plugin.getServer().getPluginManager().getPlugin("WorldEdit");
         Plugin tempWG = plugin.getServer().getPluginManager().getPlugin("WorldGuard");
         if (tempWE == null && tempWG == null) {

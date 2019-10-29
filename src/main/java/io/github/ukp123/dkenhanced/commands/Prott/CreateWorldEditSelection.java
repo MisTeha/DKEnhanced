@@ -7,7 +7,6 @@ import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.regions.RegionOperationException;
 import io.github.ukp123.dkenhanced.DKEnhanced;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 
@@ -25,7 +24,8 @@ class CreateWorldEditSelection {
             if (expandVert) {
                 selection.expand(
                         BlockVector3.at(0, (255 + 1), 0),
-                        BlockVector3.at(0, -(255 + 1), 0));
+                        BlockVector3.at(0, -(255 + 1), 0)
+                );
             }
             return selection;
         } catch (IncompleteRegionException | RegionOperationException e) {

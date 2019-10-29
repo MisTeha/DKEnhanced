@@ -1,12 +1,15 @@
 package io.github.ukp123.dkenhanced.commands;
 
 import io.github.ukp123.dkenhanced.DKEnhanced;
+import io.github.ukp123.dkenhanced.commands.Prott.MemberCommands.MemberCommand;
 import io.github.ukp123.dkenhanced.commands.Prott.ProttCommand;
 import io.github.ukp123.dkenhanced.commands.help.HelpCommand;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import java.lang.reflect.Member;
 
 
 public class MainCommand implements CommandExecutor {
@@ -35,6 +38,13 @@ public class MainCommand implements CommandExecutor {
                 return true;
             case "prott":
                 ProttCommand.commandPrott(player, plugin, args);
+                return true;
+            case "add":
+                MemberCommand.modifyMemberCommand(player, args, plugin, true);
+                return true;
+            case "remove":
+            case "rem":
+                MemberCommand.modifyMemberCommand(player, args, plugin, false);
                 return true;
             default:
                 player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.unknown_arg", args[0]));

@@ -102,6 +102,5 @@ class CreateRegion {
         Location center = new Location(world, bv3Center.getBlockX(), world.getHighestBlockYAt(BukkitAdapter.adapt(world, bv3Center)), bv3Center.getBlockZ());
         return (BukkitAdapter.adapt(center));
     }
-
 }
 
