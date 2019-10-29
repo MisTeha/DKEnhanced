@@ -36,8 +36,11 @@ ProttCommand:
   prot_made: "{PREFIX} &aAla loodud."
 
 MemberCommands:
-  add:
-    player_undefined: "{PREFIX} &cPalun sisesta mängija, keda tahad alasse lisada"
+    player_undefined: "{PREFIX} &cPalun sisesta mängija, keda tahad alasse lisada."
+    no_region: "{PREFIX} &cSa ei ole üheski alas."
+    player_not_owner: "{PREFIX} &cSa pole selle ala omanik."
+    member_added: "{PREFIX} &aMängija lisatud."
+    member_removed: "{PREFIX} &aMängija eemaldatud."
 
 
 

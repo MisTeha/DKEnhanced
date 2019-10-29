@@ -9,6 +9,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Member;
+
 
 public class MainCommand implements CommandExecutor {
 
@@ -38,7 +40,11 @@ public class MainCommand implements CommandExecutor {
                 ProttCommand.commandPrott(player, plugin, args);
                 return true;
             case "add":
-                MemberCommand.addMemberCommand(player, args, plugin);
+                MemberCommand.modifyMemberCommand(player, args, plugin, true);
+                return true;
+            case "remove":
+            case "rem":
+                MemberCommand.modifyMemberCommand(player, args, plugin, false);
                 return true;
             default:
                 player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.unknown_arg", args[0]));

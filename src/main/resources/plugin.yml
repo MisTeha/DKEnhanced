@@ -1,11 +1,14 @@
 name: DKEnhanced
 version: ${project.version}
 main: io.github.ukp123.dkenhanced.DKEnhanced
-api-version: 1.13
+api-version: 1.14
 authors: [ukp123]
 description: Makes things go smoother for DKServer.
 commands:
   dk:
     description: DKEnhanced põhikäsk.
     usage: /dk <arg>
-    permission: dkenhanced.help
+
+permissions:
+  dkenhanced.help:
+    description: for /dk and /dk help
