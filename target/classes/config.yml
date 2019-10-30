@@ -7,3 +7,10 @@ commands:
     greeting: "Sisenesite {PLAYER} alale."
     farewell: "Lahkusite {PLAYER} alalt."
     ride: true
+db:
+  mysql:
+    host: ""
+    port: 0
+    database: ""
+    username: ""
+    password: ""

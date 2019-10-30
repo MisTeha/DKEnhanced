@@ -8,6 +8,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Objects;
 
 public final class DKEnhanced extends JavaPlugin {
@@ -17,6 +21,10 @@ public final class DKEnhanced extends JavaPlugin {
 
     private String name = getDescription().getName() + " ";
     private String namepVersion = getDescription().getName() + " v" + getDescription().getVersion() + " ";
+
+    private Connection connection;
+    private String host, database, username, password;
+    private int port;
 
 
     private void updateConfig(DKEnhanced plugin) throws IOException {
@@ -63,6 +71,7 @@ public final class DKEnhanced extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("WorldGuard") == null) {
             getLogger().warning("WorldGuard ei ole installitud. Osad " + name + "funktsioonid ei pruugi toimida.");
         }
+        databasesomething();
     }
 
     @Override
@@ -98,5 +107,36 @@ public final class DKEnhanced extends JavaPlugin {
         Reader defConfigStream = new InputStreamReader(Objects.requireNonNull(this.getResource("messages.yml")), "UTF8");
         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
         customConfig.setDefaults(defConfig);
+    }
+
+    private void databasesomething() {
+        FileConfiguration config = getConfig();
+        host = config.getString("db.mysql.host");
+        port = config.getInt("db.mysql.port");
+        database = config.getString("db.mysql.database");
+        username = config.getString("db.mysql.username");
+        password = config.getString("db.mysql.password");
+        try {
+            openConnection();
+            Statement statement = connection.createStatement();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openConnection() throws SQLException, ClassNotFoundException {
+        if (connection != null && !connection.isClosed()) {
+            return;
+        }
+
+        synchronized (this) {
+            if (connection != null && !connection.isClosed()) {
+                return;
+            }
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database, this.username, this.password);
+        }
     }
 }
