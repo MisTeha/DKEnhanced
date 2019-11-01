@@ -1,5 +1,7 @@
 package io.github.ukp123.dkenhanced.db;
 
+import com.mysql.cj.xdevapi.Session;
+import com.mysql.cj.xdevapi.SessionFactory;
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -56,7 +58,7 @@ public class DatabaseUtils {
         }
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 }
