@@ -1,5 +1,8 @@
 package io.github.ukp123.dkenhanced;
 
+import io.github.ukp123.dkenhanced.commandannatation.Command;
+import io.github.ukp123.dkenhanced.commandannatation.CommandArgs;
+import io.github.ukp123.dkenhanced.commandannatation.CommandFramework;
 import io.github.ukp123.dkenhanced.commands.MainCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -47,10 +50,12 @@ public final class DKEnhanced extends JavaPlugin {
         return m;
     }
 
+    MainCommand mc = new MainCommand(this);
+    CommandFramework framework;
     @Override
     public void onEnable() {
+        framework = new CommandFramework(this);
         getLogger().info(namepVersion + "on aktiveeritud.");
-        Objects.requireNonNull(this.getCommand("dk")).setExecutor(new MainCommand(this));
         CreateMessagesConfig();
         try {
             updateConfig(this);
@@ -63,6 +68,9 @@ public final class DKEnhanced extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("WorldGuard") == null) {
             getLogger().warning("WorldGuard ei ole installitud. Osad " + name + "funktsioonid ei pruugi toimida.");
         }
+        framework.registerCommands(this);
+        framework.registerCommands(new MainCommand(this));
+        //see kuradima completer ei tööta ju mingi täielik paskkkkkkkkk
     }
 
     @Override
@@ -99,4 +107,6 @@ public final class DKEnhanced extends JavaPlugin {
         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
         customConfig.setDefaults(defConfig);
     }
+
+
 }
