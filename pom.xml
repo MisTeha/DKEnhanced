@@ -6,7 +6,7 @@
 
     <groupId>io.github.ukp123</groupId>
     <artifactId>DKEnhanced</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
 
     <name>DKEnhanced</name>
@@ -107,5 +107,12 @@
             <version>7.0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.18</version>
+        </dependency>
+
     </dependencies>
 </project>
