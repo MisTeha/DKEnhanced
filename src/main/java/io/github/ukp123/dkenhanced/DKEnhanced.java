@@ -1,8 +1,8 @@
 package io.github.ukp123.dkenhanced;
 
-import com.github.intellectualsites.plotsquared.api.PlotAPI;
-import com.github.intellectualsites.plotsquared.plot.PlotSquared;
 import io.github.ukp123.dkenhanced.commands.MainCommand;
+import io.github.ukp123.dkenhanced.commands.plotsquared.hinda;
+import io.github.ukp123.dkenhanced.commands.plotsquared.test;
 import io.github.ukp123.dkenhanced.db.DatabaseUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -55,6 +55,8 @@ public final class DKEnhanced extends JavaPlugin {
     @Override
     public void onEnable() {
         Objects.requireNonNull(this.getCommand("dk")).setExecutor(new MainCommand(this));
+        this.getCommand("ttest").setExecutor(new test());
+        this.getCommand("hinda").setExecutor(new hinda(this));
         CreateMessagesConfig();
         try {
             updateConfig(this);

@@ -1,5 +1,5 @@
 name: DKEnhanced
-version: 1.1.0
+version: 1.2.0
 main: io.github.ukp123.dkenhanced.DKEnhanced
 api-version: 1.14
 authors: [ukp123]
@@ -8,7 +8,12 @@ commands:
   dk:
     description: DKEnhanced põhikäsk.
     usage: /dk <arg>
-
+  ttest:
+    description: mdea
+    usage: /ttest
+  hinda:
+    description: mdea
+    usage: /hinda
 permissions:
   dkenhanced.help:
     description: for /dk and /dk help

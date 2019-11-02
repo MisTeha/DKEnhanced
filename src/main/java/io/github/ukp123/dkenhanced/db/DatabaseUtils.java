@@ -6,10 +6,9 @@ import io.github.ukp123.dkenhanced.DKEnhanced;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseUtils {
 
@@ -18,6 +17,7 @@ public class DatabaseUtils {
     private static int port;
 
     DKEnhanced plugin;
+    static Statement statement;
 
     public DatabaseUtils(DKEnhanced p) {
         plugin = p;
@@ -34,7 +34,7 @@ public class DatabaseUtils {
             password = config.getString("db.mysql.password");
             try {
                 openConnection();
-                Statement statement = connection.createStatement();
+                statement = connection.createStatement();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
@@ -56,6 +56,23 @@ public class DatabaseUtils {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://" + this.host + ":" + this.port + "/" + this.database + "?verifyServerCertificate=false&useSSL=true", this.username, this.password);
         }
+    }
+
+    public static void createTable(String tablename) throws SQLException {
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + tablename + "(" +
+                "hindaja VARCHAR(36)," +
+                "hindajaUN VARCHAR (16)," +
+                "ehitaja VARCHAR(36)," +
+                "ehitajaUN VARCHAR(16)," +
+                "plotid INT," +
+                "timestamp TIMESTAMP)");
+    }
+
+    public static void checkIfTableExists(String tablename) throws SQLException {
+    }
+
+    public static void addToTable() {
+        statement.executeUpdate()
     }
 
     public static Connection getConnection() {
