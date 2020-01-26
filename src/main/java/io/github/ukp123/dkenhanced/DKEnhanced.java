@@ -1,9 +1,8 @@
 package io.github.ukp123.dkenhanced;
 
+import io.github.ukp123.dkenhanced.commands.Ev.HindaCommand;
 import io.github.ukp123.dkenhanced.commands.MainCommand;
-import io.github.ukp123.dkenhanced.commands.plotsquared.hinda;
-import io.github.ukp123.dkenhanced.commands.plotsquared.test;
-import io.github.ukp123.dkenhanced.db.DatabaseUtils;
+import io.github.ukp123.dkenhanced.utils.DatabaseUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -22,7 +21,7 @@ public final class DKEnhanced extends JavaPlugin {
     private String namepVersion = getDescription().getName() + " v" + getDescription().getVersion() + " ";
 
 
-    private void updateConfig(DKEnhanced plugin) throws IOException {
+    private void updateConfig() throws IOException {
         getConfig().options().copyDefaults(true);
         saveConfig();
         reloadCustomConfig();
@@ -55,11 +54,10 @@ public final class DKEnhanced extends JavaPlugin {
     @Override
     public void onEnable() {
         Objects.requireNonNull(this.getCommand("dk")).setExecutor(new MainCommand(this));
-        this.getCommand("ttest").setExecutor(new test());
-        this.getCommand("hinda").setExecutor(new hinda(this));
+        this.getCommand("createev").setExecutor(new HindaCommand(this));
         CreateMessagesConfig();
         try {
-            updateConfig(this);
+            updateConfig();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -110,6 +108,4 @@ public final class DKEnhanced extends JavaPlugin {
         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
         customConfig.setDefaults(defConfig);
     }
-
-
 }

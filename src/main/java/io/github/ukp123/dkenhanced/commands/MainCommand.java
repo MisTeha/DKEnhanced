@@ -4,7 +4,7 @@ import io.github.ukp123.dkenhanced.DKEnhanced;
 import io.github.ukp123.dkenhanced.commands.Prott.MemberCommands.MemberCommand;
 import io.github.ukp123.dkenhanced.commands.Prott.ProttCommand;
 import io.github.ukp123.dkenhanced.commands.help.HelpCommand;
-import io.github.ukp123.dkenhanced.db.DatabaseUtils;
+import io.github.ukp123.dkenhanced.utils.DatabaseUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,7 +12,6 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 
 public class MainCommand implements CommandExecutor {

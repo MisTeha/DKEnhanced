@@ -1,7 +1,6 @@
 package io.github.ukp123.dkenhanced.commands.Prott;
 
 import io.github.ukp123.dkenhanced.DKEnhanced;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 

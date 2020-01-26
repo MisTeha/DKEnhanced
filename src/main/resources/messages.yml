@@ -36,11 +36,25 @@ ProttCommand:
   prot_made: "{PREFIX} &aAla loodud."
 
 MemberCommands:
-    player_undefined: "{PREFIX} &cPalun sisesta mängija, keda tahad alasse lisada."
-    no_region: "{PREFIX} &cSa ei ole üheski alas."
-    player_not_owner: "{PREFIX} &cSa pole selle ala omanik."
-    member_added: "{PREFIX} &aMängija lisatud."
-    member_removed: "{PREFIX} &aMängija eemaldatud."
+  player_undefined: "{PREFIX} &cPalun sisesta mängija, keda tahad alasse lisada."
+  no_region: "{PREFIX} &cSa ei ole üheski alas."
+  player_not_owner: "{PREFIX} &cSa pole selle ala omanik."
+  member_added: "{PREFIX} &aMängija lisatud."
+  member_removed: "{PREFIX} &aMängija eemaldatud."
+
+HindaCommand:
+  grade_undefined: "{PREFIX} &cHinne lisamata."
+  no_plot: "{PREFIX} &cSa ei asu kellegi alal."
+  multiple_owners: "{PREFIX} &cAlal on mitu omanikku, palun eemaldada üleliigsed."
+  no_table: "{PREFIX} &cTabelit selle plottide ala jaoks ei eksisteeri."
+  no_plotarea: "{PREFIX} &c Sa ei asu plottide alal."
+  no_arg_given: "{PREFIX} &9/hinda [hinne]"
+  admin:
+    no_arg_given: "{PREFIX} &9/hinda admin &eregisterarea | removearea"
+    area_already_setup: "{PREFIX} &7{V} &9on juba andmebaasis."
+    area_not_exists: "{PREFIX} &9Ala &7{V} &9ei ole andmebaasis."
+    area_setup: "{PREFIX} &7{V} &aon edukalt registreeritud."
+    area_removed: "{PREFIX} &7{V} &aon edukalt eemaldatud."
 
 
 

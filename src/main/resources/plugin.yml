@@ -8,12 +8,17 @@ commands:
   dk:
     description: DKEnhanced põhikäsk.
     usage: /dk <arg>
-  ttest:
-    description: mdea
-    usage: /ttest
   hinda:
     description: mdea
     usage: /hinda
 permissions:
-  dkenhanced.help:
-    description: for /dk and /dk help
+  dkenhanced:
+    children:
+      help:
+        description: Allows access to /dk and /dk help
+      hinda:
+        description: Allows access to /hinda
+        children:
+          admin:
+            description: Allows access to admin controls for /hinda
+
