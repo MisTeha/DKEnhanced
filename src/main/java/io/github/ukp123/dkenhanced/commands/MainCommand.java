@@ -4,7 +4,6 @@ import io.github.ukp123.dkenhanced.DKEnhanced;
 import io.github.ukp123.dkenhanced.commands.Prott.MemberCommands.MemberCommand;
 import io.github.ukp123.dkenhanced.commands.Prott.ProttCommand;
 import io.github.ukp123.dkenhanced.commands.help.HelpCommand;
-import io.github.ukp123.dkenhanced.db.DatabaseUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,7 +11,6 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 
 public class MainCommand implements CommandExecutor {
@@ -27,7 +25,6 @@ public class MainCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        connection = DatabaseUtils.getConnection();
         if (sender instanceof ConsoleCommandSender) {
             sender.sendMessage("Konsooli commandid ei ole veel toetatud.");
             return true;

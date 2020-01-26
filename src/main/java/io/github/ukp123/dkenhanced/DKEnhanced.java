@@ -1,9 +1,6 @@
 package io.github.ukp123.dkenhanced;
 
-import com.github.intellectualsites.plotsquared.api.PlotAPI;
-import com.github.intellectualsites.plotsquared.plot.PlotSquared;
 import io.github.ukp123.dkenhanced.commands.MainCommand;
-import io.github.ukp123.dkenhanced.db.DatabaseUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -50,7 +47,7 @@ public final class DKEnhanced extends JavaPlugin {
         return m;
     }
 
-    DatabaseUtils dbu = new DatabaseUtils(this);
+
 
     @Override
     public void onEnable() {
@@ -70,7 +67,6 @@ public final class DKEnhanced extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("PlotSquared") == null) {
             getLogger().warning("PlotSquared'i pole instalitud. Osad " + name + "funktsioonid ei pruugi toimida.");
         }
-        dbu.r.runTaskAsynchronously(this);
         getLogger().info(namepVersion + "on aktiveeritud.");
     }
 
