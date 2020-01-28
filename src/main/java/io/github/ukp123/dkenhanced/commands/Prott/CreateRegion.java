@@ -15,6 +15,8 @@ import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import io.github.ukp123.dkenhanced.DKEnhanced;
+import io.github.ukp123.dkenhanced.commands.utils.messageutils.MessageUtils;
+import io.github.ukp123.dkenhanced.commands.utils.messageutils.Messages;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -29,7 +31,7 @@ class CreateRegion {
         Player pgPlayer;
         pgPlayer = plugin.getServer().getPlayer(tempPGPlayer);
         if (pgPlayer == null) {
-            sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.player_disconnected", tempPGPlayer));
+            MessageUtils.sendMessage(Messages.PROTT_PLAYER_DISCONNECTED, sender, tempPGPlayer);
             return;
         }
         ProtectedRegion region;
@@ -46,20 +48,20 @@ class CreateRegion {
         try {
             region = new ProtectedCuboidRegion(protectionName, min, max);
         } catch (IllegalArgumentException e) {
-            sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.used_illegal_characters"));
+            MessageUtils.sendMessage(Messages.PROTT_USED_ILLEGAL_CHAR, sender);
             return;
         }
         if (!bypassPlimit) {
             assert regions != null;
             if (getRegionCount(pgPlayer, plugin, regions) >= plugin.getConfig().getInt("commands.prott.prot_limit")) {
-                sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.player_over_prot_limit", pgPlayer.getName()));
+                MessageUtils.sendMessage(Messages.PROTT_PLAYER_OVER_PROTLIMIT, sender, pgPlayer.getName());
                 return;
             }
         }
         assert regions != null;
         regions.addRegion(region);
         applyFlagsAndOwner(region, pgPlayer, selection, plugin);
-        sender.sendMessage(plugin.replaceMessageVariables("ProttCommand.prot_made"));
+        MessageUtils.sendMessage(Messages.PROTT_PROT_MADE, sender);
     }
 
     private static String getProtectionName(Player player, DKEnhanced plugin, RegionManager regions) {

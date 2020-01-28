@@ -1,7 +1,8 @@
 package io.github.ukp123.dkenhanced.commands.Prott;
 
 import io.github.ukp123.dkenhanced.DKEnhanced;
-import org.bukkit.ChatColor;
+import io.github.ukp123.dkenhanced.commands.utils.messageutils.MessageUtils;
+import io.github.ukp123.dkenhanced.commands.utils.messageutils.Messages;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -12,11 +13,11 @@ public class ProttCommand {
 
     public static void commandPrott(Player player, DKEnhanced plugin, String[] args) {
         if (plugin.getConfig().getString("commands.prott.permission") == null) {
-            player.sendMessage(plugin.replaceMessageVariables("Error_Messages.unknown_arg"));
+            MessageUtils.sendMessage(Messages.ERROR_PLUGIN_UNCONFIGURED, player);
             return;
         }
         if (!player.hasPermission(Objects.requireNonNull(plugin.getConfig().getString("commands.prott.permission")))) {
-            player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.no_permission_message"));
+            MessageUtils.sendMessage(Messages.ERROR_NOPERM_MESSAGE, player);
             return;
         }
         if (!checkWEAndWG(player, plugin)) {
@@ -26,7 +27,7 @@ public class ProttCommand {
             return;
         }
         if (args.length == 1) {
-            player.sendMessage(plugin.replaceMessageVariables("ProttCommand.player_undefined"));
+            MessageUtils.sendMessage(Messages.PROTT_PLAYER_UNDEFINED, player);
             return;
         }
         if (args.length >= 2) {
@@ -36,7 +37,7 @@ public class ProttCommand {
             for (String arg :
                     args) {
                 if (arg.contentEquals(ignorelimits)) {
-                    player.sendMessage(plugin.replaceMessageVariables("ProttCommand.ignoring_prot_limit"));
+                    MessageUtils.sendMessage(Messages.PROTT_IGNORING_PROTLIMIT, player);
                     ignoreLimit = true;
                 }
             }
@@ -48,13 +49,13 @@ public class ProttCommand {
         Plugin tempWE = plugin.getServer().getPluginManager().getPlugin("WorldEdit");
         Plugin tempWG = plugin.getServer().getPluginManager().getPlugin("WorldGuard");
         if (tempWE == null && tempWG == null) {
-            player.sendMessage(plugin.replaceMessageVariables("ProttCommand.we_wg_undefined"));
+            MessageUtils.sendMessage(Messages.PROTT_WE_WG_UNDEFINED, player);
             return false;
         } else if (tempWE == null) {
-            player.sendMessage(plugin.replaceMessageVariables("ProttCommand.we_undefined"));
+            MessageUtils.sendMessage(Messages.PROTT_WE_UNDEFINED, player);
             return false;
         } else if (tempWG == null) {
-            player.sendMessage(plugin.replaceMessageVariables("ProttCommand.wg_undefined"));
+            MessageUtils.sendMessage(Messages.PROTT_WG_UNDEFINED, player);
             return false;
         }
         return true;

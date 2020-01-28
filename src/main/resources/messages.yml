@@ -21,7 +21,7 @@ SpecificHelpPage:
 ErrorMessages:
   plugin_unconfigured: "{PREFIX} &cPlugin ei ole konfigureeritud, palun kontakteeru administraatoriga."
   no_permission_message: "{PREFIX} &cSul pole õigust sellele käsule."
-  unknown_arg: "{PREFIX} Tundmatu argument: {V}"
+  unknown_arg: "{PREFIX} Tundmatu argument: %s"
 
 ProttCommand:
   we_wg_undefined: "{PREFIX} &cWorldEditi ega WorldGuardi ei ole installitud. &7/dk prott &cei toimi nendeta."
@@ -29,8 +29,8 @@ ProttCommand:
   wg_undefined: "{PREFIX} &cWorldGuardi ei ole installitud. &7/dk prott &cei toimi selleta."
   selection_undefined: "{PREFIX} &cAla valimata."
   player_undefined: "{PREFIX} &cPalun sisesta mängija, kellele ala teed."
-  player_disconnected: "{PREFIX} &cMängija &7{V} &cei ole serveriga ühendatud."
-  player_over_prot_limit: "{PREFIX} &cMängijal &7{V} &con juba &7{PROT_LIMIT} &cala.\n&eKui soovid teha protte üle limiidi, kasuta lippu -ignorelimit"
+  player_disconnected: "{PREFIX} &cMängija &7%s &cei ole serveriga ühendatud."
+  player_over_prot_limit: "{PREFIX} &cMängijal &7%s &con juba &7{PROT_LIMIT} &cala.\n&eKui soovid teha protte üle limiidi, kasuta lippu -ignorelimit"
   used_illegal_characters: "{PREFIX} &cOled kasutanud ala nimes keelatud tähti. Ala ei loodud."
   ignoring_prot_limit: "{PREFIX} &eIgnoreerin prottide limiiti."
   prot_made: "{PREFIX} &aAla loodud."

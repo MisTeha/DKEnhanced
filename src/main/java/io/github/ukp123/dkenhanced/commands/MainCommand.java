@@ -4,6 +4,8 @@ import io.github.ukp123.dkenhanced.DKEnhanced;
 import io.github.ukp123.dkenhanced.commands.Prott.MemberCommands.MemberCommand;
 import io.github.ukp123.dkenhanced.commands.Prott.ProttCommand;
 import io.github.ukp123.dkenhanced.commands.help.HelpCommand;
+import io.github.ukp123.dkenhanced.commands.utils.messageutils.MessageUtils;
+import io.github.ukp123.dkenhanced.commands.utils.messageutils.Messages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +33,7 @@ public class MainCommand implements CommandExecutor {
         }
         Player player = (Player) sender;
         if (plugin.getConfig().getString("commands.prott.permission") == null) {
-            player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.no_permission_message"));
+            MessageUtils.sendMessage(Messages.ERROR_NOPERM_MESSAGE, player);
             return true;
         }
         if (args.length == 0) {
@@ -54,7 +56,7 @@ public class MainCommand implements CommandExecutor {
                 MemberCommand.modifyMemberCommand(player, args, plugin, false);
                 return true;
             default:
-                player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.unknown_arg", args[0]));
+                MessageUtils.sendMessage(Messages.ERROR_UNKNOWN_ARG, player, args[0]);
                 return true;
         }
     }
