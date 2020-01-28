@@ -4,6 +4,8 @@ import io.github.ukp123.dkenhanced.commands.Ev.HindaCommand;
 import io.github.ukp123.dkenhanced.commands.MainCommand;
 import io.github.ukp123.dkenhanced.utils.DatabaseUtils;
 import org.bukkit.ChatColor;
+import io.github.ukp123.dkenhanced.commands.MainCommand;
+import io.github.ukp123.dkenhanced.commands.utils.messageutils.MessageUtils;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -29,27 +31,6 @@ public final class DKEnhanced extends JavaPlugin {
         getMessagesConfig().save(customConfigFile);
     }
 
-    public String replaceMessageVariables(String path) {
-        String m = getMessagesConfig().getString(path);
-        if (m == null) {
-            return "null";
-        }
-        m = m.replace("{PREFIX}", Objects.requireNonNull(customConfig.getString("prefix")));
-        m = m.replace("{DEVELOPER}", "ukp123");
-        m = m.replace("{VERSION}", getDescription().getVersion());
-        m = m.replace("{HELP_COMMAND}", "/dk help");
-        m = m.replace("{PROT_LIMIT}", Integer.toString(getConfig().getInt("commands.prott.prot_limit")));
-        m = ChatColor.translateAlternateColorCodes('&', m);
-        return m;
-    }
-
-    public String replaceMessageVariables(String path, String arg) {
-        String m = replaceMessageVariables(path);
-        m = m.replace("{V}", arg);
-        return m;
-    }
-
-    DatabaseUtils dbu = new DatabaseUtils(this);
 
     @Override
     public void onEnable() {
@@ -70,8 +51,7 @@ public final class DKEnhanced extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("PlotSquared") == null) {
             getLogger().warning("PlotSquared'i pole instalitud. Osad " + name + "funktsioonid ei pruugi toimida.");
         }
-        dbu.r.runTaskAsynchronously(this);
-        getLogger().info(namepVersion + "on aktiveeritud.");
+        MessageUtils.plugin = this;
     }
 
     @Override
@@ -108,4 +88,9 @@ public final class DKEnhanced extends JavaPlugin {
         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
         customConfig.setDefaults(defConfig);
     }
+
+    public DKEnhanced get() {
+        return this;
+    }
+
 }
