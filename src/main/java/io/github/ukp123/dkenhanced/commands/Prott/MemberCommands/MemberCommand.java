@@ -1,7 +1,7 @@
 package io.github.ukp123.dkenhanced.commands.Prott.MemberCommands;
 
-import com.sk89q.minecraft.util.commands.Command;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldedit.util.Location;
 import com.sk89q.worldguard.LocalPlayer;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
@@ -9,13 +9,12 @@ import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import io.github.ukp123.dkenhanced.commands.Prott.ProttCommand;
-import com.sk89q.worldedit.util.Location;
+import io.github.ukp123.dkenhanced.commands.utils.messageutils.MessageUtils;
+import io.github.ukp123.dkenhanced.commands.utils.messageutils.Messages;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.permissions.Permission;
 
 public class MemberCommand {
 
@@ -25,61 +24,50 @@ public class MemberCommand {
         FileConfiguration config = plugin.getConfig();
         String addPermission = "dkenhanced.member.add";
         String removePermission = "dkenhanced.member.remove";
-        String noPermissionMessage = plugin.replaceMessageVariables("ErrorMessages.no_permission_message");
-        String noRegion = plugin.replaceMessageVariables("MemberCommands.no_region");
-        String playerNotOwner = plugin.replaceMessageVariables("MemberCommands.player_not_owner");
-        String playerUndefined = plugin.replaceMessageVariables("MemberCommands.player_undefined");
-        String playerDisconnected = "Midagi läks valesti.. MemberCommand.java:33"; //Kui kõik töötab, ei lähe see väärtus kunagi kasutusse.
-        String memberAdded = plugin.replaceMessageVariables("MemberCommands.member_added");
-        String memberRemoved = plugin.replaceMessageVariables("MemberCommands.member_removed");
         boolean hasWgPerms = false;
-        if (noPermissionMessage == null) {
-            player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.plugin_unconfigured"));
-            return;
-        }
         if (add) {
             if (!player.hasPermission("worldguard.region.addmember.*")) {
                 if (!player.hasPermission(addPermission)) {
-                    player.sendMessage(noPermissionMessage);
+                    MessageUtils.sendMessage(Messages.ERROR_NOPERM_MESSAGE, player);
                     return;
                 }
             } else {hasWgPerms = true;}
         } else {
             if (!player.hasPermission("worldguard.region.removemember.*")) {
                 if (!player.hasPermission(removePermission)) {
-                    player.sendMessage(noPermissionMessage);
+                    MessageUtils.sendMessage(Messages.ERROR_NOPERM_MESSAGE, player);
                     return;
                 }
             } else {hasWgPerms = true;}
         }
         if (getCurrentRegion(player) == null) {
-            player.sendMessage(noRegion);
+            MessageUtils.sendMessage(Messages.MEMBER_NO_REGION, player);
             return;
         }
         if (!playerIsOwner(player, plugin) && !hasWgPerms) {
-            player.sendMessage(playerNotOwner);
+            MessageUtils.sendMessage(Messages.MEMBER_PLAYER_NOTOWNER, player);
             return;
         }
         if (args.length <= 1) {
-            player.sendMessage(playerUndefined);
+            MessageUtils.sendMessage(Messages.MEMBER_PLAYER_UNDEFINED, player);
             return;
         }
-        playerDisconnected = plugin.replaceMessageVariables("ProttCommand.player_disconnected", args[1]);
         Player member = plugin.getServer().getPlayer(args[1]);
         if (add) {
             if (member == null) {
-                player.sendMessage(playerDisconnected);
+                MessageUtils.sendMessage(Messages.PROTT_PLAYER_DISCONNECTED, player);
                 return;
             }
             ModifyMembers.addMember(getCurrentRegion(player), member);
-            player.sendMessage(memberAdded);
+            MessageUtils.sendMessage(Messages.MEMBER_MEMBER_ADDED, player);
         } else {
+            //// TODO: 2020-01-27 vaata mis siin toimub selle sendMessage asjaga ja siis paranda if juures warning
             if (member == null) {
                 player.sendMessage(ModifyMembers.removeMember(getCurrentRegion(player), args[1]));
-                player.sendMessage(memberRemoved);
+                MessageUtils.sendMessage(Messages.MEMBER_MEMBER_REMOVED, player);
             } else {
                 ModifyMembers.removeMember(getCurrentRegion(player), member);
-                player.sendMessage(memberRemoved);
+                MessageUtils.sendMessage(Messages.MEMBER_MEMBER_REMOVED, player);
             }
         }
     }
