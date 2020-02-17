@@ -117,5 +117,11 @@
             <version>2.16.1</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.intellectualsites.plotsquared</groupId>
+            <artifactId>PlotSquared-API</artifactId>
+            <version>latest</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

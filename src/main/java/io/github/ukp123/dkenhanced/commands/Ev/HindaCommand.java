@@ -1,6 +1,9 @@
 package io.github.ukp123.dkenhanced.commands.Ev;
 
 import io.github.ukp123.dkenhanced.DKEnhanced;
+import io.github.ukp123.dkenhanced.utils.PsUtils;
+import io.github.ukp123.dkenhanced.utils.messageutils.MessageUtils;
+import io.github.ukp123.dkenhanced.utils.messageutils.Messages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,7 +17,6 @@ public class HindaCommand extends PsUtils implements CommandExecutor {
     DKEnhanced plugin;
 
     public HindaCommand(DKEnhanced p) {
-        super(p);
         plugin = p;
     }
 
@@ -32,7 +34,7 @@ public class HindaCommand extends PsUtils implements CommandExecutor {
             admin = true;
         }
         if (!player.hasPermission("dkenhanced.hinda") && !admin) {
-            player.sendMessage(plugin.replaceMessageVariables("ErrorMessages.no_permission_message"));
+            MessageUtils.sendMessage(Messages.ERROR_NOPERM_MESSAGE, player);
             return true;
         }
         if (args.length > 0 && args[0].equalsIgnoreCase("admin") && admin) {
@@ -45,16 +47,16 @@ public class HindaCommand extends PsUtils implements CommandExecutor {
             return true;
         }
         if (!areaCheck(player)) {
-            player.sendMessage(plugin.replaceMessageVariables("HindaCommand.no_plotarea"));
+            MessageUtils.sendMessage(Messages.HINDA_NOPLOTAREA, player);
             return true;
         }
         if (getCurrentPlot(player) == null) {
-            player.sendMessage(plugin.replaceMessageVariables("HindaCommand.no_plot"));
+            MessageUtils.sendMessage(Messages.HINDA_NOPLOT, player);
             return true;
         }
 
         if (args.length == 0) {
-            player.sendMessage(plugin.replaceMessageVariables("HindaCommand.grade_undefined"));
+            MessageUtils.sendMessage(Messages.HINDA_GRADE_UNDEFINED, player);
             return true;
         }
 

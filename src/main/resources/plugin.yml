@@ -11,6 +11,8 @@ commands:
   hinda:
     description: mdea
     usage: /hinda
+  createev:
+    description: käi putsi tonis
 permissions:
   dkenhanced:
     children:

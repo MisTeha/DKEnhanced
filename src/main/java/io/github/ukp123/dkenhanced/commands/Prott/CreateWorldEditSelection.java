@@ -7,8 +7,8 @@ import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldedit.regions.RegionOperationException;
 import io.github.ukp123.dkenhanced.DKEnhanced;
-import io.github.ukp123.dkenhanced.commands.utils.messageutils.MessageUtils;
-import io.github.ukp123.dkenhanced.commands.utils.messageutils.Messages;
+import io.github.ukp123.dkenhanced.utils.messageutils.MessageUtils;
+import io.github.ukp123.dkenhanced.utils.messageutils.Messages;
 import org.bukkit.entity.Player;
 
 

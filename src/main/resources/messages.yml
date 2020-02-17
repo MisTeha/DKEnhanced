@@ -51,10 +51,10 @@ HindaCommand:
   no_arg_given: "{PREFIX} &9/hinda [hinne]"
   admin:
     no_arg_given: "{PREFIX} &9/hinda admin &eregisterarea | removearea"
-    area_already_setup: "{PREFIX} &7{V} &9on juba andmebaasis."
-    area_not_exists: "{PREFIX} &9Ala &7{V} &9ei ole andmebaasis."
-    area_setup: "{PREFIX} &7{V} &aon edukalt registreeritud."
-    area_removed: "{PREFIX} &7{V} &aon edukalt eemaldatud."
+    area_already_setup: "{PREFIX} &7%s &9on juba andmebaasis."
+    area_not_exists: "{PREFIX} &9Ala &7%s &9ei ole andmebaasis."
+    area_setup: "{PREFIX} &7%s &aon edukalt registreeritud."
+    area_removed: "{PREFIX} &7%s &aon edukalt eemaldatud."
 
 
 

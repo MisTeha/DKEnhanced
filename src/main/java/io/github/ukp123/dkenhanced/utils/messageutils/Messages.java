@@ -1,6 +1,6 @@
-package io.github.ukp123.dkenhanced.commands.utils.messageutils;
+package io.github.ukp123.dkenhanced.utils.messageutils;
 
-@SuppressWarnings({"unused", "SpellCheckingInspection"})
+@SuppressWarnings({"SpellCheckingInspection"})
 public enum Messages {
     CREDITS_DEVELOPER("Credits.developer"),
     CREDITS_VERSION("Credits.version"),
@@ -36,12 +36,27 @@ public enum Messages {
     MEMBER_NO_REGION("MemberCommands.no_region"),
     MEMBER_PLAYER_NOTOWNER("MemberCommands.player_not_owner"),
     MEMBER_MEMBER_ADDED("MemberCommands.member_added"),
-    MEMBER_MEMBER_REMOVED("MemberCommands.member_removed");
+    MEMBER_MEMBER_REMOVED("MemberCommands.member_removed"),
+
+    HINDA_GRADE_UNDEFINED("HindaCommand.grade_undefined"),
+    HINDA_NOPLOT("HindaCommand.no_plot"),
+    HINDA_MULTIPLE_OWNERS("HindaCommand.multiple_owners"),
+    HINDA_NOTABLE("HindaCommand.no_table"),
+    HINDA_NOPLOTAREA("HindaCommand.no_plotarea"),
+    HINDA_NOARG("HindaCommand.no_arg_given"),
+    HINDAADMIN_NOARG("HindaCommand.admin.no_arg_given"),
+    HINDAADMIN_AREASETUP("HindaCommand.admin.area_already_setup"),
+    HINDAADMIN_AREA_REMOVED("HindaCommand.admin.area_removed");
 
     public final String path;
+
 
     Messages(String path_) {
         path = path_;
     }
 
+    @Override
+    public String toString() {
+        return path;
+    }
 }

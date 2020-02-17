@@ -1,4 +1,4 @@
-package io.github.ukp123.dkenhanced.commands.utils.messageutils;
+package io.github.ukp123.dkenhanced.utils.messageutils;
 
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import org.bukkit.ChatColor;
@@ -9,7 +9,7 @@ import java.util.Objects;
 public class MessageUtils {
 
     public static DKEnhanced plugin;
-
+    @SuppressWarnings("ConfusingArgumentToVarargsMethod")
     public static void sendMessage(Messages message, Player player, String... variables) {
         String path = message.path;
 

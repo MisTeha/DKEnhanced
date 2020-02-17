@@ -1,8 +1,8 @@
-package io.github.ukp123.dkenhanced.utils;
+package io.github.ukp123.dkenhanced.utils.database;
 
 import com.github.intellectualsites.plotsquared.plot.object.Plot;
 import io.github.ukp123.dkenhanced.DKEnhanced;
-import io.github.ukp123.dkenhanced.commands.Ev.PsUtils;
+import io.github.ukp123.dkenhanced.utils.PsUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class DatabaseUtils extends PsUtils {
 
     private static Connection connection;
@@ -22,13 +23,12 @@ public class DatabaseUtils extends PsUtils {
     DKEnhanced plugin;
     static Statement statement;
 
-    private static String plotgrades = "DKEnhanced_plotgrades";
-    private static String plotbuilders = "DKEnhanced_plotbuilders";
-    private static String plots = "DKEnhanced_plots";
-    private static String ev = "DKEnhanced_ev";
+    private final static String plotgrades = "DKEnhanced_plotgrades";
+    private final static String plotbuilders = "DKEnhanced_plotbuilders";
+    private final static String plots = "DKEnhanced_plots";
+    private final static String ev = "DKEnhanced_ev";
 
     public DatabaseUtils(DKEnhanced p) {
-        super(p);
         plugin = p;
     }
 
@@ -109,15 +109,7 @@ public class DatabaseUtils extends PsUtils {
                 "plot_y int(11)," +
                 "plot_area VARCHAR(45)," +
                 "plot_included BOOLEAN)");
-        statement.executeUpdate("CREATE TABLE IF NOT EXISTS " + ev + " (" +
-                "id int(11) NOT NULL AUTO_INCREMENT," +
-                "name varchar(36) NOT NULL," +
-                "plot_area varchar(45) NOT NULL," +
-                "start_time timestamp NOT NULL," +
-                "end_time timestamp NOT NULL," +
-                "timestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP," +
-                "PRIMARY KEY (id)" +
-                ")");
+        executeStatement(Statements.CREATE_EV_TABLE, false);
     }
 
     public static void addAreaGrade(Player player, int grade) throws SQLException {
@@ -171,9 +163,38 @@ public class DatabaseUtils extends PsUtils {
         }
     }
 
-    public static String getEv() {
-        return ev;
+    public static ResultSet executeStatement(Statements statements, boolean result, Object... parameters) {
+        String sql = statements.statement;
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            for (int i = 0; i < parameters.length; i++) {
+                Object obj = parameters[i];
+                if (obj instanceof Integer) {
+                    statement.setInt(i + 1, (Integer) obj);
+                } else if (obj instanceof String) {
+                    statement.setString(i + 1, (String) obj);
+                } else if (obj instanceof Long) {
+                    statement.setLong(i + 1, (Long) obj);
+                } else {
+                    statement.setObject(i + 1, obj);
+                }
+            }
+
+            if (result) {
+                ResultSet resultSet = statement.executeQuery();
+                return resultSet;
+            } else {
+                statement.execute();
+                statement.close();
+            }
+            return null;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
+
 
     public static Connection getConnection() {
         return connection;

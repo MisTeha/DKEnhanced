@@ -1,11 +1,10 @@
 package io.github.ukp123.dkenhanced;
 
+import io.github.ukp123.dkenhanced.commands.Ev.CreateEvCommand;
 import io.github.ukp123.dkenhanced.commands.Ev.HindaCommand;
 import io.github.ukp123.dkenhanced.commands.MainCommand;
-import io.github.ukp123.dkenhanced.utils.DatabaseUtils;
-import org.bukkit.ChatColor;
-import io.github.ukp123.dkenhanced.commands.MainCommand;
-import io.github.ukp123.dkenhanced.commands.utils.messageutils.MessageUtils;
+import io.github.ukp123.dkenhanced.utils.database.DatabaseUtils;
+import io.github.ukp123.dkenhanced.utils.messageutils.MessageUtils;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -31,11 +30,13 @@ public final class DKEnhanced extends JavaPlugin {
         getMessagesConfig().save(customConfigFile);
     }
 
+    DatabaseUtils dbu = new DatabaseUtils(this);
 
     @Override
     public void onEnable() {
         Objects.requireNonNull(this.getCommand("dk")).setExecutor(new MainCommand(this));
-        this.getCommand("createev").setExecutor(new HindaCommand(this));
+        getCommand("createev").setExecutor(new CreateEvCommand());
+        this.getCommand("hinda").setExecutor(new HindaCommand(this));
         CreateMessagesConfig();
         try {
             updateConfig();
@@ -52,6 +53,7 @@ public final class DKEnhanced extends JavaPlugin {
             getLogger().warning("PlotSquared'i pole instalitud. Osad " + name + "funktsioonid ei pruugi toimida.");
         }
         MessageUtils.plugin = this;
+        dbu.r.runTaskAsynchronously(this);
     }
 
     @Override
@@ -59,7 +61,7 @@ public final class DKEnhanced extends JavaPlugin {
         getLogger().info(namepVersion + " on deaktiveeritud.");
     }
 
-    public FileConfiguration getMessagesConfig() {
+    public static FileConfiguration getMessagesConfig() {
         return this.customConfig;
     }
 

@@ -1,7 +1,8 @@
-package io.github.ukp123.dkenhanced.commands.Ev;
+package io.github.ukp123.dkenhanced.utils;
 
 import com.github.intellectualsites.plotsquared.plot.object.Location;
 import com.github.intellectualsites.plotsquared.plot.object.Plot;
+import com.github.intellectualsites.plotsquared.plot.object.PlotArea;
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -10,13 +11,10 @@ import java.util.UUID;
 
 public class PsUtils {
 
-    private static DKEnhanced plugin;
+    public static DKEnhanced plugin;
+    
 
-    public PsUtils(DKEnhanced p) {
-        plugin = p;
-    }
-
-    protected static boolean isInt(String s) {
+    public static boolean isInt(String s) {
         try {
             Integer.parseInt(s);
         } catch (NumberFormatException nfe) {
@@ -25,37 +23,40 @@ public class PsUtils {
         return true;
     }
     //Kui siin tekib error ja sa ei saa aru miks siis vaata kas database server töötab.. ma pole väga taibukas vahel..
-    protected static Location getPlotLocation(Player player) {
+    public static Location getPlotLocation(org.bukkit.Location location) {
         Location pl = new Location();
-        org.bukkit.Location l = player.getLocation();
-        pl.setX(l.getBlockX());
-        pl.setY(l.getBlockY());
-        pl.setZ(l.getBlockZ());
-        pl.setWorld(l.getWorld().getName());
+        pl.setX(location.getBlockX());
+        pl.setY(location.getBlockY());
+        pl.setZ(location.getBlockZ());
+        pl.setWorld(location.getWorld().getName());
         return pl;
     }
 
-    protected static String getAreaID(Player player) {
-        return getPlotLocation(player).getPlotArea().toString();
+    public static String getAreaID(Player player) {
+        return getPlotLocation(player.getLocation()).getPlotArea().toString();
     }
 
-    protected static Player getPlayerfromUUID(UUID uuid) throws NullPointerException {
+    public static Player getPlayerfromUUID(UUID uuid) throws NullPointerException {
         Player p;
         p = plugin.getServer().getPlayer(uuid);
         if (p == null) throw new NullPointerException();
         return p;
     }
 
-    protected static OfflinePlayer getOfflinePlayerFromUUID(UUID uuid) {
+    public static OfflinePlayer getOfflinePlayerFromUUID(UUID uuid) {
         return plugin.getServer().getOfflinePlayer(uuid);
     }
 
-    protected static boolean areaCheck(Player player) {
-        return getPlotLocation(player).isPlotArea();
+    public static boolean areaCheck(Player player) {
+        return getPlotLocation(player.getLocation()).isPlotArea();
     }
 
-    protected static Plot getCurrentPlot(Player player) {
-        return getPlotLocation(player).getOwnedPlot();
+    public static PlotArea getPlotArea(org.bukkit.Location location) {
+        return getPlotLocation(location).getPlotArea();
+    }
+
+    public static Plot getCurrentPlot(Player player) {
+        return getPlotLocation(player.getLocation()).getOwnedPlot();
     }
 
 

@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import java.util.Date;
 
 public class GradeSession {
-    Ehitusvõistlus ev;
+    BuildingContest ev;
     Date startdate;
     Date endTime;
     Player player;

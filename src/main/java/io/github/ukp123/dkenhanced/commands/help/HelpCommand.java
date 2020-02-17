@@ -1,8 +1,8 @@
 package io.github.ukp123.dkenhanced.commands.help;
 
 import io.github.ukp123.dkenhanced.DKEnhanced;
-import io.github.ukp123.dkenhanced.commands.utils.messageutils.MessageUtils;
-import io.github.ukp123.dkenhanced.commands.utils.messageutils.Messages;
+import io.github.ukp123.dkenhanced.utils.messageutils.MessageUtils;
+import io.github.ukp123.dkenhanced.utils.messageutils.Messages;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
