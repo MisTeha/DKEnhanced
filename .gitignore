@@ -4,5 +4,9 @@
 *.lst
 *.class
 *.kotlin_module
+.classpath
+.factorypath
+.project
+.settings
 target
 out/
