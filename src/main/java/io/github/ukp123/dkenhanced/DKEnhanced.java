@@ -61,7 +61,7 @@ public final class DKEnhanced extends JavaPlugin {
         getLogger().info(namepVersion + " on deaktiveeritud.");
     }
 
-    public static FileConfiguration getMessagesConfig() {
+    public FileConfiguration getMessagesConfig() {
         return this.customConfig;
     }
 

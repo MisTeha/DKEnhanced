@@ -28,8 +28,8 @@ public class CreateEvCommand implements CommandExecutor {
         String theme;
         SimpleDateFormat sdf;
         TimeZone timeZone = TimeZone.getTimeZone("Europe/Tallinn");
-        Calendar startTime = new Calendar.get;
-        Date startTimeDate;
+        Calendar startTime = new Calendar.Builder().build();//  watefak is dis mdea see lic ei andnud errorit
+        Date startTimeDate = null;
         Date endTime;
         long duration = 0;
         PlotArea plotArea;
@@ -53,7 +53,7 @@ public class CreateEvCommand implements CommandExecutor {
         }
         name = args[0];
         sdf = new SimpleDateFormat("dd.MM HH.mm");
-        sdf.setCalendar();
+        //sdf.setCalendar();
         try {
             duration = TimeUtils.parseDateDiff(args[3], true);
             ifDuration = true;
@@ -67,9 +67,12 @@ public class CreateEvCommand implements CommandExecutor {
             }
 
             startTimeStr = String.join(" ", Arrays.copyOfRange(args, 1, 3));
-            player.sendMessage(startTimeStr);
+            player.sendMessage("FOR DEBUG: " + startTimeStr); //for debug
+            sdf = new SimpleDateFormat("dd.MM HH.mm");
+            sdf.setCalendar(startTime);
             try {
-                startTimeDate = new SimpleDateFormat("dd.MM HH.mm").setCalendar(startTime);
+                sdf.parse(startTimeStr);
+                //need read siin üleval on mingid imelikud, ilmselt kaugel õigest.
             } catch (ParseException e) {
                 player.sendMessage("Alguse aeg pole õige");
                 return true;
