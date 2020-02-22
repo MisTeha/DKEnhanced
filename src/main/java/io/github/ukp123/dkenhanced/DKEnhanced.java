@@ -12,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.*;
 import java.util.Objects;
+import java.util.TimeZone;
 
 public final class DKEnhanced extends JavaPlugin {
 
@@ -20,6 +21,8 @@ public final class DKEnhanced extends JavaPlugin {
 
     private String name = getDescription().getName() + " ";
     private String namepVersion = getDescription().getName() + " v" + getDescription().getVersion() + " ";
+
+    private TimeZone timeZone = TimeZone.getTimeZone("Europe/Tallinn");
 
 
     private void updateConfig() throws IOException {
@@ -91,8 +94,8 @@ public final class DKEnhanced extends JavaPlugin {
         customConfig.setDefaults(defConfig);
     }
 
-    public DKEnhanced get() {
-        return this;
+    public TimeZone getTimeZone() {
+        return timeZone;
     }
 
 }

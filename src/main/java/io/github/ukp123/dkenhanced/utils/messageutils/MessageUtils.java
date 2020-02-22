@@ -9,14 +9,13 @@ import java.util.Objects;
 public class MessageUtils {
 
     public static DKEnhanced plugin;
-    @SuppressWarnings("ConfusingArgumentToVarargsMethod")
     public static void sendMessage(Messages message, Player player, String... variables) {
         String path = message.path;
 
         String m = plugin.getMessagesConfig().getString(path);
         assert m != null;
         m = getString(m);
-        if (variables.length > 0) //noinspection ConfusingArgumentToVarargsMethod
+        if (variables.length > 0)
             m = String.format(m, variables);
         player.sendMessage(m);
     }

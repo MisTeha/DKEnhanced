@@ -7,6 +7,8 @@ commands:
     greeting: "Sisenesite {PLAYER} alale."
     farewell: "Lahkusite {PLAYER} alalt."
     ride: true
+  ev:
+    timezone: "Europe/Tallinn"
 db:
   mysql:
     host: ""

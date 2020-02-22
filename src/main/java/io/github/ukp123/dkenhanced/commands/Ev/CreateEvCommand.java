@@ -3,12 +3,14 @@ package io.github.ukp123.dkenhanced.commands.Ev;
 import com.github.intellectualsites.plotsquared.plot.object.PlotArea;
 import io.github.ukp123.dkenhanced.utils.PsUtils;
 import io.github.ukp123.dkenhanced.utils.TimeUtils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -22,13 +24,13 @@ public class CreateEvCommand implements CommandExecutor {
     // TODO: 2020-01-28 check for repeating names
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
+        final TimeZone timeZone = TimeUtils.timeZone;
         String name;
         String startTimeStr;
         String endTimeStr;
         String theme;
         SimpleDateFormat sdf;
-        TimeZone timeZone = TimeZone.getTimeZone("Europe/Tallinn");
-        Calendar startTime = new Calendar.Builder().build();//  watefak is dis mdea see lic ei andnud errorit
+        Calendar startTime = Calendar.getInstance(TimeZone.getTimeZone("Etc/UTC"));
         Date startTimeDate = null;
         Date endTime;
         long duration = 0;
@@ -52,12 +54,13 @@ public class CreateEvCommand implements CommandExecutor {
             return true;
         }
         name = args[0];
-        sdf = new SimpleDateFormat("dd.MM HH.mm");
-        //sdf.setCalendar();
+
+
         try {
             duration = TimeUtils.parseDateDiff(args[3], true);
             ifDuration = true;
         } catch (Exception e) {
+            player.sendMessage("not using duration");
             ifDuration = false;
         }
         if (ifDuration) {
@@ -67,28 +70,37 @@ public class CreateEvCommand implements CommandExecutor {
             }
 
             startTimeStr = String.join(" ", Arrays.copyOfRange(args, 1, 3));
-            player.sendMessage("FOR DEBUG: " + startTimeStr); //for debug
             sdf = new SimpleDateFormat("dd.MM HH.mm");
-            sdf.setCalendar(startTime);
             try {
-                sdf.parse(startTimeStr);
-                //need read siin üleval on mingid imelikud, ilmselt kaugel õigest.
+                startTimeDate = sdf.parse(startTimeStr);
             } catch (ParseException e) {
                 player.sendMessage("Alguse aeg pole õige");
                 return true;
             }
+
+            startTime.setTime(startTimeDate);
+            startTime.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
+            startTimeDate = startTime.getTime();
+
             theme = String.join(" ", Arrays.copyOfRange(args, 4, args.length));
 
-            new BuildingContest(name, theme, plotArea, startTimeDate, duration);
+            try {
+                new BuildingContest(name, theme, plotArea, startTimeDate, duration);
+                player.sendMessage(ChatColor.GREEN + "ev loodud"); // TODO: 2020-02-23 korralik message
+                return true;
+            } catch (SQLException e) {
+                player.sendMessage(ChatColor.RED + "Midagi läks valesti: " + ChatColor.RESET + e.toString()); // TODO: 2020-02-23 korralik message
+                e.printStackTrace();
+                return true;
+            }
+
         }
-
-        startTimeStr = args[1] + " " + args[2];
+        // TODO: 2020-02-23 terve kogu see asi
+        player.sendMessage("See command töötab praegu ainult ev kestvusega");
+        return true;
+        /* startTimeStr = args[1] + " " + args[2];
         endTimeStr = args[3] + " " + args[4];
-        theme = String.join(" ", Arrays.copyOfRange(args, 5, args.length));
-        
+        theme = String.join(" ", Arrays.copyOfRange(args, 5, args.length)); */
 
-
-
-        return false;
     } // /createev ev 08.05 15:00 09.05 23:59 Ilus moderne maja
 }

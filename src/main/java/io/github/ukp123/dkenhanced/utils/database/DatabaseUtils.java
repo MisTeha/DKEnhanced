@@ -163,36 +163,32 @@ public class DatabaseUtils extends PsUtils {
         }
     }
 
-    public static ResultSet executeStatement(Statements statements, boolean result, Object... parameters) {
+    public static ResultSet executeStatement(Statements statements, boolean result, Object... parameters) throws SQLException {
         String sql = statements.statement;
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
 
-            for (int i = 0; i < parameters.length; i++) {
-                Object obj = parameters[i];
-                if (obj instanceof Integer) {
-                    statement.setInt(i + 1, (Integer) obj);
-                } else if (obj instanceof String) {
-                    statement.setString(i + 1, (String) obj);
-                } else if (obj instanceof Long) {
-                    statement.setLong(i + 1, (Long) obj);
-                } else {
-                    statement.setObject(i + 1, obj);
-                }
-            }
+        PreparedStatement statement = connection.prepareStatement(sql);
 
-            if (result) {
-                ResultSet resultSet = statement.executeQuery();
-                return resultSet;
+        for (int i = 0; i < parameters.length; i++) {
+            Object obj = parameters[i];
+            if (obj instanceof Integer) {
+                statement.setInt(i + 1, (Integer) obj);
+            } else if (obj instanceof String) {
+                statement.setString(i + 1, (String) obj);
+            } else if (obj instanceof Long) {
+                statement.setLong(i + 1, (Long) obj);
             } else {
-                statement.execute();
-                statement.close();
+                statement.setObject(i + 1, obj);
             }
-            return null;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return null;
         }
+
+        if (result) {
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet;
+        } else {
+            statement.execute();
+            statement.close();
+        }
+        return null;
     }
 
 
