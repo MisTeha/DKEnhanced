@@ -1,5 +1,6 @@
 package io.github.ukp123.dkenhanced.utils;
 
+
 import com.github.intellectualsites.plotsquared.plot.object.Location;
 import com.github.intellectualsites.plotsquared.plot.object.Plot;
 import com.github.intellectualsites.plotsquared.plot.object.PlotArea;
@@ -24,12 +25,7 @@ public class PsUtils {
     }
     //Kui siin tekib error ja sa ei saa aru miks siis vaata kas database server töötab.. ma pole väga taibukas vahel..
     public static Location getPlotLocation(org.bukkit.Location location) {
-        Location pl = new Location();
-        pl.setX(location.getBlockX());
-        pl.setY(location.getBlockY());
-        pl.setZ(location.getBlockZ());
-        pl.setWorld(location.getWorld().getName());
-        return pl;
+        return new Location(location.getWorld().getName(), location.getBlockX(),  location.getBlockY(), location.getBlockZ());
     }
 
     public static String getAreaID(Player player) {

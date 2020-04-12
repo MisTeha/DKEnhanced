@@ -44,10 +44,7 @@ public class DatabaseUtils extends PsUtils {
             try {
                 openConnection();
                 statement = connection.createStatement();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-                return;
-            } catch (SQLException e) {
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
                 return;
             }
@@ -56,6 +53,7 @@ public class DatabaseUtils extends PsUtils {
                 if (!checkTables()) {
                     plugin.getLogger().warning("Tabeleid ei eksisteeri. Loon tabelid..");
                     createTables();
+                    plugin.getLogger().info("Tabelid loodud.");
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

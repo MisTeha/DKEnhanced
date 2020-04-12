@@ -13,8 +13,8 @@ import org.bukkit.entity.Player;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -30,7 +30,6 @@ public class CreateEvCommand implements CommandExecutor {
         String endTimeStr;
         String theme;
         SimpleDateFormat sdf;
-        Calendar startTime = Calendar.getInstance(TimeZone.getTimeZone("Etc/UTC"));
         Date startTimeDate = null;
         Date endTime;
         long duration = 0;
@@ -60,7 +59,7 @@ public class CreateEvCommand implements CommandExecutor {
             duration = TimeUtils.parseDateDiff(args[3], true);
             ifDuration = true;
         } catch (Exception e) {
-            player.sendMessage("not using duration");
+            player.sendMessage(ChatColor.YELLOW + "DEBUG: not using duration");
             ifDuration = false;
         }
         if (ifDuration) {
@@ -70,17 +69,15 @@ public class CreateEvCommand implements CommandExecutor {
             }
 
             startTimeStr = String.join(" ", Arrays.copyOfRange(args, 1, 3));
-            sdf = new SimpleDateFormat("dd.MM HH.mm");
+            sdf = new SimpleDateFormat("dd.MM HH.mm yyyy");
             try {
-                startTimeDate = sdf.parse(startTimeStr);
+                String mystring = startTimeStr + " " + LocalDate.now().getYear();
+                startTimeDate = sdf.parse(mystring);
             } catch (ParseException e) {
                 player.sendMessage("Alguse aeg pole õige");
                 return true;
             }
 
-            startTime.setTime(startTimeDate);
-            startTime.set(Calendar.YEAR, Calendar.getInstance().get(Calendar.YEAR));
-            startTimeDate = startTime.getTime();
 
             theme = String.join(" ", Arrays.copyOfRange(args, 4, args.length));
 

@@ -10,7 +10,7 @@ public class TimeUtils {
     private static Pattern timePattern = Pattern.compile("(?:([0-9]+)\\s*y[a-z]*[,\\s]*)?" + "(?:([0-9]+)\\s*mo[a-z]*[,\\s]*)?" + "(?:([0-9]+)\\s*w[a-z]*[,\\s]*)?" + "(?:([0-9]+)\\s*d[a-z]*[,\\s]*)?" + "(?:([0-9]+)\\s*h[a-z]*[,\\s]*)?" + "(?:([0-9]+)\\s*m[a-z]*[,\\s]*)?" + "(?:([0-9]+)\\s*(?:s[a-z]*)?)?", Pattern.CASE_INSENSITIVE);
     private static final int maxYears = 100000;
 
-    public static final TimeZone timeZone = TimeZone.getTimeZone("Europe/Tallinn"); // TODO: 2020-02-23 Timezone võtta configist kui see üldse midagi teeb mul pole ausalt aimugi
+    public static final TimeZone timeZone = TimeZone.getTimeZone("Europe/Tallinn"); //TODO: 2020-02-23 Timezone võtta configist kui see üldse midagi teeb mul pole ausalt aimugi
 
     public static String removeTimePattern(String input) {
         return timePattern.matcher(input).replaceFirst("").trim();
@@ -64,7 +64,6 @@ public class TimeUtils {
         if (!found) {
             throw new Exception("Invalid Date");
         }
-        //TODO: see vaja saada alguse, mitte praeguse peale.
         Calendar c = Calendar.getInstance();
         c.clear();
         c.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
@@ -100,5 +99,4 @@ public class TimeUtils {
         }
         return c.getTimeInMillis();
     }
-
 }
