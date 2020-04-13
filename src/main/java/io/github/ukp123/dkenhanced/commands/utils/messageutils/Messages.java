@@ -31,6 +31,8 @@ public enum Messages {
     PROTT_USED_ILLEGAL_CHAR("ProttCommand.used_illegal_characters"),
     PROTT_IGNORING_PROTLIMIT("ProttCommand.ignoring_prot_limit"),
     PROTT_PROT_MADE("ProttCommand.prot_made"),
+    PROTT_NAME_EXISTS("ProttCommand.name_exists"),
+    PROTT_NAME_FOUND("ProttCommand.name_found"),
 
     MEMBER_PLAYER_UNDEFINED("MemberCommands.player_undefined"),
     MEMBER_NO_REGION("MemberCommands.no_region"),
