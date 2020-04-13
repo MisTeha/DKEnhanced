@@ -9,22 +9,23 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.TimeZone;
+import java.time.ZonedDateTime;
+import java.util.*;
 
 public class CreateEvCommand implements CommandExecutor {
     // TODO: 2020-01-28 permid
     // TODO: 2020-01-30 a default config.. samal päeval 18:00-21:00 ja siis teema
     // TODO: 2020-01-28 check for repeating names
     @Override
-    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
+    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, String s, @NotNull String[] args) {
         final TimeZone timeZone = TimeUtils.timeZone;
+        ZonedDateTime now = ZonedDateTime.now(timeZone.toZoneId());
+        Date nowDate = Date.from(now.toInstant());
         String name;
         String startTimeStr;
         String endTimeStr;
@@ -62,22 +63,19 @@ public class CreateEvCommand implements CommandExecutor {
             player.sendMessage(ChatColor.YELLOW + "DEBUG: not using duration");
             ifDuration = false;
         }
+
         if (ifDuration) {
             if (args.length < 5) {
                 player.sendMessage("lisage teema"); // TODO: 2020-02-15
                 return true;
             }
 
-            startTimeStr = String.join(" ", Arrays.copyOfRange(args, 1, 3));
-            sdf = new SimpleDateFormat("dd.MM HH.mm yyyy");
             try {
-                String mystring = startTimeStr + " " + LocalDate.now().getYear();
-                startTimeDate = sdf.parse(mystring);
+                startTimeDate = getStartTime(args, now);
             } catch (ParseException e) {
                 player.sendMessage("Alguse aeg pole õige");
                 return true;
             }
-
 
             theme = String.join(" ", Arrays.copyOfRange(args, 4, args.length));
 
@@ -92,12 +90,21 @@ public class CreateEvCommand implements CommandExecutor {
             }
 
         }
-        // TODO: 2020-02-23 terve kogu see asi
-        player.sendMessage("See command töötab praegu ainult ev kestvusega");
+        try {
+            startTimeDate = getStartTime(args, now);
+        } catch (ParseException e) {
+            player.sendMessage("Alguse aeg pole õige");
+            return true;
+        }
         return true;
-        /* startTimeStr = args[1] + " " + args[2];
-        endTimeStr = args[3] + " " + args[4];
-        theme = String.join(" ", Arrays.copyOfRange(args, 5, args.length)); */
+    }
+    // /createev ev 08.05 15:00 09.05 23:59 Ilus moderne maja
 
-    } // /createev ev 08.05 15:00 09.05 23:59 Ilus moderne maja
+    private Date getStartTime(String[] args, ZonedDateTime now) throws ParseException {
+        String startTimeStr = String.join(" ", Arrays.copyOfRange(args, 1, 3));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM HH.mm yyyy");
+        String timeString = startTimeStr + " " + now.getYear();
+        return sdf.parse(timeString);
+    }
 }
+
