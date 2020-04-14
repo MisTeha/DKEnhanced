@@ -34,6 +34,8 @@ ProttCommand:
   used_illegal_characters: "{PREFIX} &cOled kasutanud ala nimes keelatud tähti. Ala ei loodud."
   ignoring_prot_limit: "{PREFIX} &eIgnoreerin prottide limiiti."
   prot_made: "{PREFIX} &aAla loodud."
+  name_exists: "{PREFIX} &aSee on mängija &7%s&a. ala, kuid ala nimega &7%s&a juba eksisteerib. Proovin teisi nimesi."
+  name_found: "{PREFIX} &aLeitud! Kasutan ala nimeks &7%s&a."
 
 MemberCommands:
   player_undefined: "{PREFIX} &cPalun sisesta mängija, keda tahad alasse lisada."

@@ -59,6 +59,20 @@ class CreateRegion {
             }
         }
         assert regions != null;
+        if (regions.getRegion(protectionName) != null) {
+            MessageUtils.sendMessage(Messages.PROTT_NAME_EXISTS, sender, Integer.toString(getRegionCount(pgPlayer, plugin, regions) + 1), protectionName);
+            boolean unavailableName = true;
+            String potentialName;
+            for (int i = 1; unavailableName; i++) {
+                potentialName = pgPlayer.getName() +"_" + i;
+                if (regions.getRegion(potentialName) == null) {
+                    protectionName = potentialName;
+                    MessageUtils.sendMessage(Messages.PROTT_NAME_FOUND, sender, protectionName);
+                    region = new ProtectedCuboidRegion(protectionName, min, max);
+                    unavailableName = false;
+                }
+            }
+        }
         regions.addRegion(region);
         applyFlagsAndOwner(region, pgPlayer, selection, plugin);
         MessageUtils.sendMessage(Messages.PROTT_PROT_MADE, sender);
