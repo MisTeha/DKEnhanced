@@ -1,46 +1,48 @@
-prefix: "&9[&3DK&bEnhanced&9]"
+prefix: "&8[&9&lDKServer&8]"
 
 Credits:
-  developer: "&3Arendaja&b ● &7{DEVELOPER}"
-  version: "&3Versioon&b ● &7{VERSION}"
-  help_command: "&3Abikäsk&b ● &7{HELP_COMMAND}"
-  prefix: "&3Prefix&b ● &7{PREFIX}"
+  developer: '&9» &7Pluginat arendab: &9{DEVELOPER}'
+  version: '&9» &7Versioon: &9{VERSION}'
+  help_command: '&9» &7Kirjuta &9{HELP_COMMAND}&7 abi saamiseks.'
+  prefix: '&9» &7Eesliide: &9{PREFIX}'
 
 HelpPage:
-  upper_line: "&8&l&m===== &r&3DK&bEnhanced &8&l&m====="
-  lower_line: "&8&l&m===================="
-  help: "&b/dk &3help &7- näitab seda lehte."
-  prott: "&b/dk &3prott &7- lisab proti sinu valitud alale."
-  add: "&b/dk &3add &7- lisab liikme alale, millel oled."
-  remove: "&b/dk &3remove &7- eemaldab liikme alalt, kus oled."
+  upper_line: "&8&l&l▬▬▬▬▬&8&l[ &b&lDKEnhanced &7- &9&lAbi &8&l]&8&l▬▬▬▬▬"
+  lower_line: "&8&l&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬"
+  help: '&7» &9/dk help &7- &fKuvab abilehe.'
+  prott: '&7» &9/dk prott &7- &fLisab proti sinu valitud alale.'
+  add: "&7» &9/dk add &7- lisab liikme alale, millel oled."
+  remove: "&7» &9/dk remove &7- eemaldab liikme alalt, kus oled."
 
 SpecificHelpPage:
-  help: "&b/dk &3help <käsk> &7Näitab kõiki käske ja nende tähendusi | käsu täpsemat tähendust."
-  prott: "&b/dk &3prott <-f> &7lisab proti sinu valitud alale.\nFlagid:\n   -ignorelimit - Ignoreerib alade limiiti mängija kohta\nInfo:\n   Mängija alade limiit: {PROT_LIMIT}"
+  help: "&9/dk help <&bkäsk&9> &7Näitab kõiki käske ja nende tähendusi | käsu täpsemat tähendust."
+  prott: "&9/dk prott (mängija) <-f> &7lisab proti sinu valitud alale.\nFlagid:\n   -ignorelimit - Ignoreerib alade limiiti mängija kohta\nInfo:\n   Mängija alade limiit: {PROT_LIMIT}"
+  add: "&9/dk add (mängija) &7lisab antud mängija alasse, millel oled. Pead olema selle ala omanik."
+  remove: "&9/dk remove (mängija) &7 eemaldab mängija alalt, millel asud. Pead olema selle ala omanik."
 
 ErrorMessages:
   plugin_unconfigured: "{PREFIX} &cPlugin ei ole konfigureeritud, palun kontakteeru administraatoriga."
   no_permission_message: "{PREFIX} &cSul pole õigust sellele käsule."
-  unknown_arg: "{PREFIX} Tundmatu argument: %s"
+  unknown_arg: "{PREFIX} &cTundmatu argument: &7%s"
 
 ProttCommand:
-  we_wg_undefined: "{PREFIX} &cWorldEditi ega WorldGuardi ei ole installitud. &7/dk prott &cei toimi nendeta."
-  we_undefined: "{PREFIX} &cWorldEditi ei ole installitud. &7/dk prott &cei toimi selleta."
-  wg_undefined: "{PREFIX} &cWorldGuardi ei ole installitud. &7/dk prott &cei toimi selleta."
-  selection_undefined: "{PREFIX} &cAla valimata."
-  player_undefined: "{PREFIX} &cPalun sisesta mängija, kellele ala teed."
-  player_disconnected: "{PREFIX} &cMängija &7%s &cei ole serveriga ühendatud."
-  player_over_prot_limit: "{PREFIX} &cMängijal &7%s &con juba &7{PROT_LIMIT} &cala.\n&eKui soovid teha protte üle limiidi, kasuta lippu -ignorelimit"
-  used_illegal_characters: "{PREFIX} &cOled kasutanud ala nimes keelatud tähti. Ala ei loodud."
+  we_wg_undefined: "{PREFIX} &7WorldEditi ega WorldGuardi ei ole installitud. &9/dk prott &7ei toimi nendeta."
+  we_undefined: "{PREFIX} &7WorldEditi ei ole installitud. &9/dk prott &7ei toimi selleta."
+  wg_undefined: "{PREFIX} &7WorldGuardi ei ole installitud. &9/dk prott &7ei toimi selleta."
+  selection_undefined: "{PREFIX} &7Ala valimata."
+  player_undefined: "{PREFIX} &7Palun sisesta mängija, kellele ala teed."
+  player_disconnected: "{PREFIX} &7Mängija &7%s &7ei ole serveriga ühendatud."
+  player_over_prot_limit: "{PREFIX} &7Mängijal &7%s &7on juba &9{PROT_LIMIT} &7ala.\n&7Kui soovid teha protte üle limiidi, kasuta lippu -ignorelimit"
+  used_illegal_characters: "{PREFIX} &7Oled kasutanud ala nimes keelatud tähti. Ala ei loodud."
   ignoring_prot_limit: "{PREFIX} &eIgnoreerin prottide limiiti."
   prot_made: "{PREFIX} &aAla loodud."
   name_exists: "{PREFIX} &aSee on mängija &7%s&a. ala, kuid ala nimega &7%s&a juba eksisteerib. Proovin teisi nimesi."
   name_found: "{PREFIX} &aLeitud! Kasutan ala nimeks &7%s&a."
 
 MemberCommands:
-    player_undefined: "{PREFIX} &cPalun sisesta mängija, keda tahad alasse lisada."
-    no_region: "{PREFIX} &cSa ei ole üheski alas."
-    player_not_owner: "{PREFIX} &cSa pole selle ala omanik."
+    player_undefined: "{PREFIX} &7Palun sisesta mängija, keda tahad alasse lisada."
+    no_region: "{PREFIX} &7Sa ei ole üheski alas."
+    player_not_owner: "{PREFIX} &7Sa pole selle ala omanik."
     member_added: "{PREFIX} &aMängija lisatud."
     member_removed: "{PREFIX} &aMängija eemaldatud."
 

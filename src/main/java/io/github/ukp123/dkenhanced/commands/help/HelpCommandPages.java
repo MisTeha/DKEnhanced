@@ -15,13 +15,16 @@ class HelpCommandPages {
                 case "prott":
                     MessageUtils.sendMessage(Messages.SPECHELPPAGE_PROTT, player);
                     return;
+                case "add":
+                    MessageUtils.sendMessage(Messages.SPECHELPPAGE_ADD, player);
+                case "remove":
+                    MessageUtils.sendMessage(Messages.SPECHELPPAGE_REMOVE, player);
                 default:
                     MessageUtils.sendMessage(Messages.ERROR_UNKNOWN_ARG, player, args[1]);
-                    return;
             }
         }
     }
-    static boolean commandList(Player player) {
+    static void commandList(Player player) {
         player.sendMessage(
         MessageUtils.replaceMessageVariables("HelpPage.upper_line") + "\n" +
         MessageUtils.replaceMessageVariables("HelpPage.help") + "\n" +
@@ -29,9 +32,8 @@ class HelpCommandPages {
         MessageUtils.replaceMessageVariables("HelpPage.add") + "\n" +
         MessageUtils.replaceMessageVariables("HelpPage.remove") + "\n" +
         MessageUtils.replaceMessageVariables("HelpPage.lower_line"));
-        return true;
     }
-    static boolean credits(Player player) {
+    static void credits(Player player) {
         player.sendMessage(
         MessageUtils.replaceMessageVariables("HelpPage.upper_line") + "\n" +
         MessageUtils.replaceMessageVariables("Credits.developer") + "\n" +
@@ -39,6 +41,5 @@ class HelpCommandPages {
         MessageUtils.replaceMessageVariables("Credits.help_command") + "\n" +
         MessageUtils.replaceMessageVariables("Credits.prefix") + "\n" +
         MessageUtils.replaceMessageVariables("HelpPage.lower_line"));
-        return true;
     }
 }

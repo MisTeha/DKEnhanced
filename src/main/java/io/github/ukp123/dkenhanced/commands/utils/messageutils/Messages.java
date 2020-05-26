@@ -16,6 +16,8 @@ public enum Messages {
 
     SPECHELPPAGE_HELP("SpecificHelpPage.help"),
     SPECHELPPAGE_PROTT("SpecificHelpPage.prott"),
+    SPECHELPPAGE_ADD("SpecificHelpPage.add"),
+    SPECHELPPAGE_REMOVE("SpecificHelpPage.remove"),
 
     ERROR_PLUGIN_UNCONFIGURED("ErrorMessages.plugin_unconfigured"),
     ERROR_NOPERM_MESSAGE("ErrorMessages.no_permission_message"),

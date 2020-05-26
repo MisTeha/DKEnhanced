@@ -64,7 +64,7 @@ class CreateRegion {
             boolean unavailableName = true;
             String potentialName;
             for (int i = 1; unavailableName; i++) {
-                potentialName = pgPlayer.getName() +"_" + i;
+                potentialName = pgPlayer.getName() + "_" + i;
                 if (regions.getRegion(potentialName) == null) {
                     protectionName = potentialName;
                     MessageUtils.sendMessage(Messages.PROTT_NAME_FOUND, sender, protectionName);

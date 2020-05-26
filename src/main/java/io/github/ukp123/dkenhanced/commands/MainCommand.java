@@ -55,6 +55,11 @@ public class MainCommand implements CommandExecutor {
             case "rem":
                 MemberCommand.modifyMemberCommand(player, args, plugin, false);
                 return true;
+            case "testmessages":
+                for (Messages i : Messages.values()) {
+                    MessageUtils.sendMessage(i, player);
+                    return true;
+                }
             default:
                 MessageUtils.sendMessage(Messages.ERROR_UNKNOWN_ARG, player, args[0]);
                 return true;
