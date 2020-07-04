@@ -1,6 +1,6 @@
 package io.github.ukp123.dkenhanced.commands.Ev;
 
-import com.github.intellectualsites.plotsquared.plot.object.PlotArea;
+import com.plotsquared.core.plot.PlotArea;
 import io.github.ukp123.dkenhanced.utils.PsUtils;
 import io.github.ukp123.dkenhanced.utils.TimeUtils;
 import org.bukkit.ChatColor;
@@ -9,20 +9,21 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class CreateEvCommand implements CommandExecutor {
     // TODO: 2020-01-28 permid
     // TODO: 2020-01-30 a default config.. samal päeval 18:00-21:00 ja siis teema
     // TODO: 2020-01-28 check for repeating names
     @Override
-    public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, String s, @NotNull String[] args) {
+    public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         final TimeZone timeZone = TimeUtils.timeZone;
         ZonedDateTime now = ZonedDateTime.now(timeZone.toZoneId());
         Date nowDate = Date.from(now.toInstant());

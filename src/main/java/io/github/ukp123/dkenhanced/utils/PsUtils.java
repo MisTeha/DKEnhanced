@@ -1,9 +1,9 @@
 package io.github.ukp123.dkenhanced.utils;
 
 
-import com.github.intellectualsites.plotsquared.plot.object.Location;
-import com.github.intellectualsites.plotsquared.plot.object.Plot;
-import com.github.intellectualsites.plotsquared.plot.object.PlotArea;
+import com.plotsquared.core.location.Location;
+import com.plotsquared.core.plot.Plot;
+import com.plotsquared.core.plot.PlotArea;
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;

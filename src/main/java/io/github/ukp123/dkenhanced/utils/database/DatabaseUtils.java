@@ -1,6 +1,7 @@
 package io.github.ukp123.dkenhanced.utils.database;
 
-import com.github.intellectualsites.plotsquared.plot.object.Plot;
+
+import com.plotsquared.core.plot.Plot;
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import io.github.ukp123.dkenhanced.utils.PsUtils;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -113,8 +114,8 @@ public class DatabaseUtils extends PsUtils {
     public static void addAreaGrade(Player player, int grade) throws SQLException {
         String plotgradeQuery = "INSERT INTO " + plotgrades + "(plot_x, plot_y, plot_area, hindaja, hindajaUN, hinne, timestamp) values (?, ?, ?, ?, ?, ?, ?)";
         Plot plot = getCurrentPlot(player);
-        int plot_x = plot.getId().x;
-        int plot_y = plot.getId().y;
+        int plot_x = plot.getId().getX();
+        int plot_y = plot.getId().getY();
         String plot_area = plot.getArea().toString();
         String hindaja = player.getUniqueId().toString();
         String hindajaUN = player.getName();

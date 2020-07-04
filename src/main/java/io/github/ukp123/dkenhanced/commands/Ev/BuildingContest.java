@@ -1,6 +1,7 @@
 package io.github.ukp123.dkenhanced.commands.Ev;
 
-import com.github.intellectualsites.plotsquared.plot.object.PlotArea;
+
+import com.plotsquared.core.plot.PlotArea;
 import io.github.ukp123.dkenhanced.utils.TimeUtils;
 import io.github.ukp123.dkenhanced.utils.database.DatabaseUtils;
 import io.github.ukp123.dkenhanced.utils.database.Statements;

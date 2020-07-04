@@ -1,6 +1,6 @@
 package io.github.ukp123.dkenhanced.commands.Ev;
 
-import com.github.intellectualsites.plotsquared.plot.object.Plot;
+import com.plotsquared.core.plot.Plot;
 import io.github.ukp123.dkenhanced.DKEnhanced;
 import io.github.ukp123.dkenhanced.utils.PsUtils;
 import io.github.ukp123.dkenhanced.utils.database.DatabaseUtils;

@@ -1,6 +1,6 @@
 package io.github.ukp123.dkenhanced.commands.Ev;
 
-import com.github.intellectualsites.plotsquared.plot.object.PlotArea;
+import com.plotsquared.core.plot.PlotArea;
 import org.bukkit.entity.Player;
 
 import java.util.Date;
