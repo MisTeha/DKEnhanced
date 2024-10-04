@@ -1,6 +1,6 @@
 # DKEnhanced (2019-2020)
 
-(This repository is for archival purposes, outdated is an understatement)
+(This repository is for archival purposes, outdated is an understatement) 
 Meant for a Minecraft server to elevate the players' experience by simplyfing the process of creating regions (areas of build protetion), integrating plugins WorldGuard and WorldEdit.
 
 ## Functions and commands
